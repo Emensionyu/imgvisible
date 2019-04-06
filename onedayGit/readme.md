@@ -27,7 +27,7 @@ git rebase -i + commitid 变基 修改commit
 git diff +文件 只显示具体文件的差异
 
 4. git reset  HEAD变更暂存区
-把暂存区回复和head一样 暂存区的变更不要脸，和分支最新的commit一样的
+把暂存区回复和head一样 暂存区的变更不要了，和分支最新的commit一样的
 git reset HEAD 文件名 具体恢复某个文件变更
 
 git diff --cached 返回空 说明暂存区和head是一样的
@@ -35,4 +35,14 @@ git diff --cached 返回空 说明暂存区和head是一样的
 当工作区的变更不如暂存区，把工作区恢复成暂存区的状态
 git checkout -- 文件名
 
-5. commit 回退
+5. commit 
+git reset --hard +commitid  修改head 暂存区工作区内容恢复至这commit
+ git diff commitid1 commitid2 查看两个commitid对应的差异
+
+6. 删除文件 
+git rm 文件名 暂存区和工作区都删除这个文件了
+7. git stash
+把当前工作区保存下来，在当前工作区下又可以生成新的commitid
+ git stash list 
+ git stash apply 恢复到之前stash下的工作区  stash{} 列表里边的堆栈信息还在可以反复使用
+ 
