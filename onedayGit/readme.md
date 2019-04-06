@@ -21,5 +21,6 @@ tree（类型）的信息包含了其他tree（提交文件的子文件或父文
 分离头指针比较危险，会产生未被处理的commit
 git branch -d 分支名   清除分支
 git commit -amend修改commit的信息
-git rebase -i + commitid 变基
+git rebase -i + commitid 变基 修改commit
+以一个commit为基把其他几个合并过来 生成新的commitid
 
