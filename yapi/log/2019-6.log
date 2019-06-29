@@ -1,0 +1,29 @@
+[ 2019/6/5 下午3:01:25 ] [ error ] MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017], mongodb Authentication failed
+[ 2019/6/5 下午3:01:25 ] [ log ] mongodb load success...
+[ 2019/6/5 下午3:04:22 ] [ error ] MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017], mongodb Authentication failed
+[ 2019/6/5 下午3:04:22 ] [ log ] mongodb load success...
+[ 2019/6/5 下午3:06:13 ] [ log ] -------------------------------------swaggerSyncUtils constructor-----------------------------------------------
+[ 2019/6/5 下午3:06:13 ] [ log ] 服务已启动，请打开下面链接访问: 
+http://127.0.0.1:3000/
+[ 2019/6/5 下午3:06:13 ] [ error ] MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017], mongodb Authentication failed
+[ 2019/6/5 下午3:06:13 ] [ log ] mongodb load success...
+[ 2019/6/5 下午3:07:26 ] [ log ] -------------------------------------swaggerSyncUtils constructor-----------------------------------------------
+[ 2019/6/5 下午3:07:26 ] [ log ] 服务已启动，请打开下面链接访问: 
+http://127.0.0.1:3000/
+[ 2019/6/5 下午3:07:26 ] [ error ] MongoError: Authentication failed., mongodb Authentication failed
+[ 2019/6/5 下午3:07:26 ] [ log ] mongodb load success...
+[ 2019/6/5 下午3:07:34 ] [ log ] -------------------------------------swaggerSyncUtils constructor-----------------------------------------------
+[ 2019/6/5 下午3:07:34 ] [ log ] 服务已启动，请打开下面链接访问: 
+http://127.0.0.1:3000/
+[ 2019/6/5 下午3:07:34 ] [ error ] MongoError: Authentication failed., mongodb Authentication failed
+[ 2019/6/5 下午3:07:34 ] [ log ] mongodb load success...
+[ 2019/6/5 下午3:09:59 ] [ log ] -------------------------------------swaggerSyncUtils constructor-----------------------------------------------
+[ 2019/6/5 下午3:10:00 ] [ log ] 服务已启动，请打开下面链接访问: 
+http://127.0.0.1:3000/
+[ 2019/6/5 下午3:10:00 ] [ error ] MongoError: Authentication failed., mongodb Authentication failed
+[ 2019/6/5 下午3:10:00 ] [ log ] mongodb load success...
+[ 2019/6/5 下午3:27:19 ] [ log ] -------------------------------------swaggerSyncUtils constructor-----------------------------------------------
+[ 2019/6/5 下午3:27:19 ] [ log ] 服务已启动，请打开下面链接访问: 
+http://127.0.0.1:3000/
+[ 2019/6/5 下午3:27:19 ] [ error ] MongoError: Authentication failed., mongodb Authentication failed
+[ 2019/6/5 下午3:27:19 ] [ log ] mongodb load success...

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
+   <link rel="stylesheet" href="./style.css">
+   <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            background: -webkit-repeating-linear-gradient(top, #f9f9f9, #f9f9f9 29px, #ccc 30px);
+            background-size: 100% 30px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 4px;
+            border-left: 4px double #ccc;
+            position: absolute;
+            left: 30px;
+        }
+
+        p {
+            position: absolute;
+            margin-left: 50px;
+            margin-top: 50px;
+            width: 20px;
+            height: 20px;
+            z-index: 100;
+        }
+
+        .icon {
+            color: #0F52BA;
+            font-size: 40px;
+            /* To get crisp results, use sizes that are
+  a multiple of 20; because Linearicons was
+  designed on a 20 by 20 grid. */
+        }
+    </style>
+</head>
+
+<body>
+    <p class="icon-cool2"></p>
+</body>
+
+</html>

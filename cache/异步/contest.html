@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var a;
+    function foo(x) {
+        dugg
+        a = x * 2;
+        baz();
+    }
+    function bar(x) {
+        a = x / 2;
+        baz();
+    }
+    function baz() {
+        console.log(a)
+    }
+
+
+    function ajax(url, cb) {//初始化、指定处理函数、发送请求的函数 
+        var xhr = null;
+        //开始初始化XMLHttpRequest对象 
+        if (window.XMLHttpRequest) { //Mozilla 浏览器 
+            xhr = new XMLHttpRequest();
+            if (xhr.overrideMimeType) {//设置MiME类别 
+                xhr.overrideMimeType('text/xml');
+            }
+        }
+        else if (window.ActiveXObject) { // IE浏览器 
+            try {
+                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) { }
+            }
+        }
+        if (!xhr) { // 异常，创建对象实例失败 
+            window.alert("不能创建XMLHttpRequest对象实例.");
+            return false;
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) { // 判断对象状态 
+                if (xhr.status == 200) { // 信息已经成功返回，开始处理信息
+                    cb = cb + "(xhr.responseText)";
+                    eval(cb);
+                }
+                else { //页面不正常 
+                    alert("您所请求的页面有异常。");
+                }
+            }
+        };
+        // 确定发送请求的方式和URL以及是否同步执行下段代码 
+        xhr.open("GET", url, true);
+        xhr.send(null);
+    }
+
+    // 处理返回信息的函数
+    ajax("https://www.easy-mock.com/mock/5ceccfd17930865af982c368/example/", foo);
+    ajax("https://www.easy-mock.com/mock/5ceccfd17930865af982c368/example/", bar)
+
+</script>

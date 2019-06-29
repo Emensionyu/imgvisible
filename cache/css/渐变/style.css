@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./fonts/icomoon.eot?3v671b');
+  src:  url('./fonts/icomoon.eot?3v671b#iefix') format('embedded-opentype'),
+    url('./fonts/icomoon.ttf?3v671b') format('truetype'),
+    url('./fonts/icomoon.woff?3v671b') format('woff'),
+    url('./grid.html') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-happy:before {
+  content: "\e9df";
+}
+.c:before {
+  content: "\e9ec";
+}
+.icon-angry:before {
+  content: "\e9ed";
+}
+.icon-evil:before {
+  content: "\e9ef";
+}
+.icon-evil2:before {
+  content: "\e9f0";
+}
+.icon-shocked2:before {
+  content: "\e9f2";
+}
+.icon-baffled:before {
+  content: "\e9f3";
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html manifest=”cache.manifest”>
+<head>
+    <title>离线存储demo</title>
+    <meta http-equiv=”Content-Type” content=”text/html;charset=UTF-8″>
+</head>
+<body>
+Hello wor
+<script type=”text/javascript” src=”http://m.baidu.com/static/js/zepto-event-ajax.js”></script>
+<script type=”text/javascript”>
+   var appCache=window.applicationCache;
+   console.log(appCache.status);
+   appCache.addEventListener(“obsolete”,function(){
+       console.log(“Obsolete,status:”+appCache.status);
+   },false);
+   appCache.addEventListener(“cached”,function(){
+       console.log(“chache,status:”+appCache.status);
+   },false);
+   appCache.addEventListener(“checking”,function(){
+       console.log(“checking,status:”+appCache.status);
+   },false);
+   appCache.addEventListener(“downloading”,function(){
+       console.log(“downloading,status:”+appCache.status);
+   },false);
+   appCache.addEventListener(‘noupdate’, function(){
+       console.log(‘Noupdate,Status:’ + appCache.status);
+   }, false);
+   appCache.addEventListener(‘updateready’, function(){
+       console.log(‘updateready,Status:’ + appCache.status);
+   }, false);
+    appCache.addEventListener(“error”,function(){
+       console.log(“error”);
+    },false);
+</script>
+</body>
+</html>
