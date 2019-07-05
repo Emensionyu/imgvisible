@@ -1,4 +1,4 @@
-##cache文件
+## cache文件
     你不知道的JavaScript代码记录
 ## canvas-demo
     《html canvas开发详解》
