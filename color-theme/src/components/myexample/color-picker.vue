@@ -1,0 +1,97 @@
+<template>
+  <div>
+    <el-popover placement="bottom" width="800" trigger="click" v-model="visible">
+      <div class="colorpick-container">
+        <div class="old-mode">
+          <div class="old-mode-header">
+            <el-radio v-model="mode" label="old">老模式</el-radio>
+          </div>
+          <div class="old-mode-body">
+            <old-picker></old-picker>
+          </div>
+        </div>
+        <div class="new-mode">
+          <div class="old-mode-header">
+            <el-radio v-model="mode" label="new">新模式</el-radio>
+          </div>
+          <div class="old-mode-body">
+            <new-picker></new-picker>
+          </div>
+        </div>
+      </div>
+      <div class="bi-property-btn__icon" slot="reference">
+        <span class="bi-icon-al-color">ss</span>
+      </div>
+    </el-popover>
+  </div>
+</template>
+<script>
+//http://www.ceshi113.com/html/fxui/index.html#/component/popover
+// const oldPicker = require("./old-picker/old-picker");
+// const newPicker = require("./new-picker/new-picker");
+import oldPicker from './old-picker/old-picker'
+import newPicker from './new-picker/new-picker'
+// import './color-picker.less'
+export default {
+  components: {
+    oldPicker,
+    newPicker
+  },
+  data() {
+    return {
+      visible: true,
+      mode: "old"
+    };
+  },
+
+  methods: {
+
+  },
+  mounted() {
+    
+  }
+};
+</script>
+<style lang="less">
+.colorpick-container{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    height: 400px;
+    
+}
+.old-mode{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width:40%;
+}
+.old-mode-header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 30px;
+}
+.old-mode-body{
+    width: 100%;
+    position: relative;
+    left: 0;
+}
+.new-mode{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width:60%;
+}
+.new-mode-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 30px;
+}
+</style>
+
