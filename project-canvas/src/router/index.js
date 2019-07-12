@@ -1,20 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import bezier from '@/components/bezier'
 import line from '@/components/line'
 import clip from '@/components/clip'
 import compose from '@/components/compose'
+import colorfill from '@/components/colorfill'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
     {
       path: '/line',
       name: 'line',
@@ -34,6 +29,11 @@ export default new Router({
       path: '/compose',
       name: 'compose',
       component: compose
+    },
+    {
+      path: '/colorfill',
+      name: 'colorfill',
+      component: colorfill
     }
   ]
 })
