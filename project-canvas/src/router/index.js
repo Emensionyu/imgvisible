@@ -1,27 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import bezier from '@/components/bezier'
 import line from '@/components/line'
 import clip from '@/components/clip'
 import compose from '@/components/compose'
-import foo from '@/components/router/foo'
-import bar from '@/components/router/bar'
+import colorfill from '@/components/colorfill'
 
 Vue.use(Router)
 
 const router=new Router({
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-      beforeEnter: (to, from, next) => {
-        // ...
-        console.log("beforeEnter路由独享守卫")
-        next()
-      }
-    },
     {
       path: '/line',
       name: 'line',
@@ -48,28 +36,10 @@ const router=new Router({
       component: compose
     },
     {
-      path: '/foo?q',
-      component: foo,
-      meta:{hello:true},
-      // children: [
-      //   {
-      //     path: 'bar',
-      //     component: bar,
-      //     // a meta field
-      //     meta: { requiresAuth: true }
-      //   }
-      // ]
-      // redirect:to=>{
-      //   const {hash,params,query}=to
-      //   console.log(hash+"hash")
-      //   console.log(JSON.stringify(params)+"params")
-      //   console.log(JSON.stringify(query)+"query")
-      //   return "/bar"
-        
-      // }
-    },
-    // { path: '/foo/:id', component: foo }
-
+      path: '/colorfill',
+      name: 'colorfill',
+      component: colorfill
+    }
   ]
 })
 router.beforeEach((to, from, next) => {
