@@ -5,7 +5,8 @@ import line from '@/components/line'
 import clip from '@/components/clip'
 import compose from '@/components/compose'
 import colorfill from '@/components/colorfill'
-
+import slot from '@/view/slot'
+import phoneNumber from '@/view/phone-number'
 Vue.use(Router)
 
 const router=new Router({
@@ -39,19 +40,29 @@ const router=new Router({
       path: '/colorfill',
       name: 'colorfill',
       component: colorfill
+    },
+    {
+      path: '/slot',
+      name: 'slot',
+      component: slot
+    },
+    {
+      path: '/phoneNumber',
+      name: 'phoneNumber',
+      component: phoneNumber
     }
   ]
 })
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
   // if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    console.log(" beforeEach全局前置守卫来了")
-    console.log(this.$router)
-    debugger
+    // console.log(" beforeEach全局前置守卫来了")
+    // console.log(this.$router)
+    // debugger
 
-    console.log("params"+this.$router.params.id)
-    next()
+    // console.log("params"+this.$router.params.id)
+    // next()
     // $router.mached 数组保存了当前路由记录和父路由记录
 
   //   if (!auth.loggedIn()) {
@@ -65,7 +76,7 @@ router.beforeEach((to, from, next) => {
   // } else {
   //   next() // 确保一定要调用 next()
   // }
-})
+// })
 
 // // router.beforeEach((to, from, next) => {
 // //   // ...

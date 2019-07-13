@@ -1,10 +1,12 @@
 <template>
   <div class="new-picker">
     <div class="picker-container" v-for="(item,index) in colorGroups" :key="item.startValue">
+
       <el-col :span="14">
         <ipt-picker :group="item"
         @group-change="this.handlerGroupChange(val,index)"
         ></ipt-picker>
+        
       </el-col>
 
       <el-col :span="10" class="">
