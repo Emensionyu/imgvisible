@@ -1,21 +1,21 @@
 <template>
   <div>
-    <el-popover placement="bottom" width="800" trigger="click" v-model="visible">
+    <el-popover ref="popver" placement="bottom" width="800" trigger="click" v-model="visible">
       <div class="colorpick-container">
         <div class="old-mode">
           <div class="old-mode-header">
             <el-radio v-model="mode" label="old">老模式</el-radio>
           </div>
           <div class="old-mode-body">
-            <old-picker></old-picker>
+            <old-picker @submit:oldcolor="handleOldColor"></old-picker>
           </div>
         </div>
         <div class="new-mode">
           <div class="old-mode-header">
-            <el-radio v-model="mode" label="new">新模式</el-radio>
+            <el-radio v-model="mode" label="new" >新模式</el-radio>
           </div>
           <div class="old-mode-body">
-            <new-picker></new-picker>
+            <new-picker @submit:newcolor="handleNewColorGroup"></new-picker>
           </div>
         </div>
       </div>
@@ -40,12 +40,32 @@ export default {
   data() {
     return {
       visible: true,
-      mode: "old"
+      mode: "old",
+      oldColor:'',
+      colorGroup:[]
     };
   },
 
   methods: {
-
+    handleOldColor(color){
+      // console.log('最终选择的老模式颜色是'+color)
+      this.oldColor=color
+      this.handleSubmit();
+    },
+    handleNewColorGroup(colorGroup){
+      this.colorGroup=colorGroup
+      // console.log('最终选择的新模式的颜色数组是'+JSON.stringify(colorGroup))
+      this.visible=false
+      this.handleSubmit();
+    },
+    handleSubmit(){
+      if(this.mode=='old'){
+        this.$emit('select',this.oldColor)
+      }else if(this.mode=='new'){
+        this.$emit('select',this.colorGroup)
+      }
+      
+    }
   },
   mounted() {
     

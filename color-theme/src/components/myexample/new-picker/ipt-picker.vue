@@ -37,6 +37,9 @@ export default {
   watch: {
     "group.startValue":function(val){
       this.handleValidate(val)
+    },
+     "group.endValue":function(val){
+      this.handleValidate(val)
     }
   },
   methods: {

@@ -1,6 +1,7 @@
 <template>
     <li class="bi-color-cubes__item" 
         :style="colorBoxStyle"
+        @click="handlerselectColor"
         ></li>
 </template>
 <script>
@@ -15,6 +16,12 @@ export default {
             return{
                 "background-color":this.color
             }
+        }
+    },
+    methods:{
+        handlerselectColor(){
+            this.$emit('select:color',this.color)
+
         }
     }
 }

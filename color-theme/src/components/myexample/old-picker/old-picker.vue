@@ -12,7 +12,7 @@
               v-for="(color,index) in item.icon.colors"
               :key="index"
               :color="color"
-              @click="handlerColorclick(color)"
+              @select:color="handlerselectColor"
             ></color-box>
           </ul>
         </span>
@@ -99,8 +99,10 @@ export default {
       }
       return result;
     },
-    handlerColorclick(color) {
-      console.log(color);
+    handlerselectColor(color) {
+      // console.log(color);
+      // debugger
+      this.$emit('submit:oldcolor',color)
     }
   },
   watch:{

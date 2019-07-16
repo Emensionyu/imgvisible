@@ -14,7 +14,9 @@
         <i class="el-icon-circle-plus-outline" @click="addGroupItem(item)"></i>
         <i class="el-icon-delete" @click="delectGroupItem(item)" v-show="index!=0"></i>
       </el-col>
+     
     </div>
+     <el-button @click="submitNewColor" size="smalls">确定</el-button>
   </div>
 </template>
 <script>
@@ -32,7 +34,7 @@ export default {
       colorGroups: [
         {
           startValue: 0,
-          endValue: 0,
+          endValue: 20,
           colorValue: "gray"
         }
       ]
@@ -84,9 +86,12 @@ export default {
       this.colorGroups = tempArray;
     },
     validate(val){
-     let res=val&&/^[0-9]+%?/.test(val)
-      return val&&/^[0-9]+%?/.test(val)
-      
+    let reg=new RegExp(/^\d[0-9]*\d?$/)
+    let reg2=new RegExp(/^\d[0-9]*\%$/)
+    return (val&&reg.test(val))||(val&&reg2.test(val))
+    },
+    submitNewColor(e){
+      this.$emit('submit:newcolor',this.colorGroups)
     }
   }
 };

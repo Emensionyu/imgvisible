@@ -27,6 +27,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      // '@':path.resolve('src','/home/mensionyu/Desktop/workspace/code/dev/bi/bi/modules/components/chart/design/color-picker'),
     }
   },
   module: {
