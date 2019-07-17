@@ -1,6 +1,6 @@
 <template>
     <div>
-          <color-picker :maxValue=200 :minValue=0
+          <color-picker :max-value="max" :min-value="min"
           @select="handleSubmit"
           >
         
@@ -17,7 +17,9 @@
         },
         data(){
             return{
-                val:[]||''
+                val:[]||'',
+                max:200,
+                min:0
             }
         },
         methods:{

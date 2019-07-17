@@ -1,14 +1,23 @@
 <template>
-  <el-popover placement="top" width="400" trigger="click">
+  <el-popover placement="top" width="550" trigger="click">
     <div class="cache-container">
-      <canvas id="mycanvas" ref="canvas" width="200" height="300"></canvas>
+      <canvas id="mycanvas" ref="canvas" width="350" height="300"></canvas>
     </div>
     <div class="hsl-container">
       <div class="hsl-container-top"></div>
       <div class="hsl-container-form">
-        <div class="hsl-item">h:<input ></div>
-        <div class="hsl-item">s:<input ></div>
-        <div class="hsl-item">l:<input ></div>
+        <div class="hsl-item">
+          h:
+          <input v-model="hsl.h" />
+        </div>
+        <div class="hsl-item">
+          s:
+          <input v-model="hsl.s" />
+        </div>
+        <div class="hsl-item">
+          l:
+          <input v-model="hsl.l" />
+        </div>
       </div>
     </div>
 
@@ -20,12 +29,12 @@
 
 <script>
 export default {
-  data(){
-    return{
-      canvas:null,
-      ctx:null,
-      hsl:{}
-    }
+  data() {
+    return {
+      canvas: null,
+      ctx: null,
+      hsl: {h:360}
+    };
   },
   methods: {
     initCanvas() {
@@ -35,57 +44,123 @@ export default {
       this.canvas = this.$refs.canvas;
       //背景
       let ctx = this.canvas.getContext("2d");
-      this.ctx=ctx;
-      let grd = ctx.createLinearGradient(0, 0, 0, 300);
-      for(let i=1;i<=360;i++){
-          grd.addColorStop((i/360).toFixed(4), this.gethsl(i));
+      this.ctx = ctx;
+      let grd = ctx.createLinearGradient(300, 0, 300, 300);
+      for (let i = 1; i <= 360; i++) {
+        grd.addColorStop((i / 360).toFixed(4), this.gethslByh(i));
       }
-      ctx.fillStyle=grd;
-      ctx.fillRect(150, 0, 50, 300);
+      ctx.fillStyle = grd;
+      ctx.fillRect(300, 0, 50, 300);
       ctx.stroke();
     },
-    gethsl(i){
+    gethslByh(i) {
       // console.log("hsl("+i+",100%,100%)")
-      return "hsl("+i+",100%,50%)"
+      return "hsl(" + i + ",100%,50%)";
     },
-    pick(e,ctx){
+    gethslBys(val, i) {
+      // console.log("hsl("+i+",100%,100%)")
+      return "hsl(" + val + "," + i + "%" + ",50%)";
+    },
+    gethslByl(val, i) {
+      // console.log("hsl("+i+",100%,100%)")
+      return "hsl(" + val + ",50%," + i + "%)";
+    },
+    gethslBysl(val, s, l) {
+      // console.log("hsl("+i+",100%,100%)")
+      return "hsl(" + val + "," + s + "%" + "," + l + "%)";
+    },
+    pick(e, ctx) {
       let x = e.layerX,
-				y = e.layerY,
-				pixel = ctx.getImageData(x, y, 1, 1),
+        y = e.layerY,
+        pixel = ctx.getImageData(x, y, 1, 1),
         data = pixel.data;
-        let rgb=[data[0],data[1],data[2]]
-        this.fromRgbtoHsl(rgb)
-        
+      let rgb = [data[0], data[1], data[2]];
+      this.fromRgbtoHsl(rgb);
     },
-    fromRgbtoHsl(rgb){
-      let r=rgb[0],g=rgb[1],b=rgb[2];
-      r /= 255, g /= 255, b /= 255;
+    fromRgbtoHsl(rgb) {
+      let r = rgb[0],
+        g = rgb[1],
+        b = rgb[2];
+      (r /= 255), (g /= 255), (b /= 255);
 
-    var max = Math.max(r, g, b);
-    var min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
+      var max = Math.max(r, g, b);
+      var min = Math.min(r, g, b);
+      var h,
+        s,
+        l = (max + min) / 2;
 
-    if (max == min) {
+      if (max == min) {
         h = s = 0; // achromatic
-    } else {
+      } else {
         var d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch(max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
+        switch (max) {
+          case r:
+            h = (g - b) / d + (g < b ? 6 : 0);
+            break;
+          case g:
+            h = (b - r) / d + 2;
+            break;
+          case b:
+            h = (r - g) / d + 4;
+            break;
         }
         h /= 6;
+      }
+      this.hsl = {
+        h: Math.floor(h * 360),
+        s: Math.floor(s * 100) + "%",
+        l: Math.floor(l * 100) + "%"
+      };
+      return (
+        "hsl(" +
+        Math.floor(h * 360) +
+        "," +
+        Math.floor(s * 100) +
+        "%," +
+        Math.floor(l * 100) +
+        "%)"
+      );
+    },
+    rePainter(val) {
+      let ctx = this.ctx;
+      for(let i=1;i<=100;i++){
+        let gradrow=ctx.createLinearGradient(0,3*(i-1),300,3*i)
+        for(let j=1;j<=100;j++){
+          gradrow.addColorStop((j/100).toFixed(2),this.gethslBysl(val,j,101-i))
+        }
+        ctx.fillStyle=gradrow;
+         ctx.fillRect(0, (i-1)*3, 300, 3);
+        ctx.stroke();
+      }
+      // let grdX =ctx.createLinearGradient(0, 300, 300, 300);
+      // for (let i = 1; i <= 100; i++) {
+      //   grdX.addColorStop((i / 100).toFixed(4),this.gethslBys(val,i) );
+      // }
+      // ctx.fillStyle = grdX;
+
+      // let grdY = ctx.createLinearGradient(0, 0, 300, 300);
+      // for (let s = 0; s <= 100; s++) {
+      //   grdY.addColorStop((s / 100).toFixed(2), this.gethslBysl(val, s,100-s));
+      // }
+      // ctx.fillStyle = grdY;
+      ctx.fillRect(0, 0, 300, 300);
+      ctx.stroke();
     }
-    this.hsl={h:Math.floor(h * 360),s:Math.floor(s * 100) + '%',l:Math.floor(l * 100) + '%'}
-    return 'hsl(' + Math.floor(h * 360) + ',' + Math.floor(s * 100) + '%,' + Math.floor(l * 100) + '%)';
-    }
+  },
+  watch: {
+    // "hsl.h": function(oldVal, newVal) {
+    //   if (oldVal != newVal) {
+    //     this.rePainter(newVal);
+    //   }
+    // }
   },
   mounted() {
     this.initCanvas();
+    this.rePainter(33);
     this.canvas.onmousemove = () => {
-			this.pick(event, this.ctx);
-		}
+      this.pick(event, this.ctx);
+    };
   }
 };
 </script>
@@ -107,7 +182,7 @@ export default {
   height: 300px;
   display: inline-block;
 }
-.hsl-container{
+.hsl-container {
   // display: inline-block;
   float: right;
   width: 200px;
@@ -115,32 +190,28 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  .hsl-container-top{
+  .hsl-container-top {
     width: 100%;
     height: 50px;
     background-color: pink;
     margin-bottom: 10px;
     border-radius: 5px;
-
   }
-  .hsl-container-form{
+  .hsl-container-form {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    .hsl-item{
+    .hsl-item {
       display: flex;
       align-items: center;
       justify-content: space-around;
       width: 50px;
       padding: 0 8px;
       // margin:0 10px;
-      input{
+      input {
         width: 50px;
       }
     }
-
-
   }
-
 }
 </style>

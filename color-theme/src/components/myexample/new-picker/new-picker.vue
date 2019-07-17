@@ -4,30 +4,45 @@
       <el-col :span="14">
         <ipt-picker
           :group="item"
-          @changeGroup="handleChangeGroup"
+          @change:group="handleChangeGroup"
           :validate="validate"
           message="必须输入数值哦"
         ></ipt-picker>
       </el-col>
       <el-col :span="10" class="">
-        <cache-color></cache-color>
+        <!-- <cache-color></cache-color> -->
+        <new-colorblock @submit:color="handleSubmitColor" :itemGroup="item">
+          <template v-slot:item="slotProps"></template>
+        </new-colorblock>
         <i class="el-icon-circle-plus-outline" @click="addGroupItem(item)"></i>
         <i class="el-icon-delete" @click="delectGroupItem(item)" v-show="index!=0"></i>
       </el-col>
      
     </div>
-     <el-button @click="submitNewColor" size="smalls">确定</el-button>
+     <el-button @click="submitNewColor" size="small">确定</el-button>
   </div>
 </template>
 <script>
 // const iptPicker = require("./ipt-picker");
 import iptPicker from "./ipt-picker";
 import cacheColor from "./cache-color";
+import newColorblock from './new-colorblock'
 
 export default {
   components: {
     iptPicker,
+    newColorblock,
     cacheColor
+  },
+  props:{
+     maxValue:{
+      type:Number,
+      required:true
+    },
+    minValue:{
+      type:Number,
+      required:true
+    }
   },
   data() {
     return {
@@ -86,9 +101,28 @@ export default {
       this.colorGroups = tempArray;
     },
     validate(val){
+      let maxValue=this.maxValue;
+      let minValue=this.minValue
     let reg=new RegExp(/^\d[0-9]*\d?$/)
     let reg2=new RegExp(/^\d[0-9]*\%$/)
-    return (val&&reg.test(val))||(val&&reg2.test(val))
+    return ((val&&reg.test(val))||(val&&reg2.test(val)))&&(val<=maxValue&&val>=minValue)
+    },
+    handleSubmitColor(params){
+      console.log(params)
+      // console.log("选择的颜色是"+params.colorValue)
+       let tempArray = this.colorGroups;
+      let time = tempArray.length;
+      for (let i = 0; i < time; i++) {
+        if (
+          tempArray[i].startValue == params.startValue &&
+          tempArray[i].endValue == params.endValue
+        ) {
+          tempArray[i].colorValue=params.colorValue
+        }
+      }
+
+      this.colorGroups = tempArray;
+
     },
     submitNewColor(e){
       this.$emit('submit:newcolor',this.colorGroups)

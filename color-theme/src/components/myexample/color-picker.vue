@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-popover ref="popver" placement="bottom" width="800" trigger="click" v-model="visible">
+    <el-popover ref="popver" placement="bottom" width="750" trigger="click" v-model="visible">
       <div class="colorpick-container">
         <div class="old-mode">
           <div class="old-mode-header">
@@ -12,10 +12,10 @@
         </div>
         <div class="new-mode">
           <div class="old-mode-header">
-            <el-radio v-model="mode" label="new" >新模式</el-radio>
+            <el-radio v-model="mode" label="new"  >新模式</el-radio>
           </div>
           <div class="old-mode-body">
-            <new-picker @submit:newcolor="handleNewColorGroup"></new-picker>
+            <new-picker @submit:newcolor="handleNewColorGroup" :max-value="maxValue" :min-value="minValue"></new-picker>
           </div>
         </div>
       </div>
@@ -36,6 +36,16 @@ export default {
   components: {
     oldPicker,
     newPicker
+  },
+  props:{
+    maxValue:{
+      type:Number,
+      required:true
+    },
+    minValue:{
+      type:Number,
+      required:true
+    }
   },
   data() {
     return {
@@ -89,9 +99,9 @@ export default {
 }
 .old-mode-header{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-top:10px;
     height: 30px;
 }
 .old-mode-body{
@@ -112,6 +122,9 @@ export default {
     justify-content: center;
     margin-bottom: 10px;
     height: 30px;
+}
+.el-popover{
+  padding: 0
 }
 </style>
 

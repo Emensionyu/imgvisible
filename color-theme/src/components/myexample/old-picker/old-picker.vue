@@ -1,13 +1,35 @@
 <template>
   <div class="old-picker">
-    <ul class="bi-property__select">
+    <ul class="bi-property__select" v-if="!isNew">
       <li
         class="bi-property__select__item clearfixed"
         v-for="(item,index) in colorBoxData"
         :key="index"
+        :class="{active:oldactive==index}" @click="oldactive=index"
       >
         <span class="bi-property__select__item__icon">
           <ul class="bi-color-cubes clearfixed">
+            <color-box
+              v-for="(color,index) in item.icon.colors"
+              :key="index"
+              :color="color"
+              @select:color="handlerselectColor"
+            ></color-box>
+          </ul>
+        </span>
+
+        <span class="bi-property__select__item__label">{{item.title}}</span>
+      </li>
+    </ul>
+    <ul class="bi-property__select" v-if="isNew">
+      <li
+        class="bi-property__select__item clearfixed"
+        v-for="(item,index) in propColor"
+        :key="index"
+        :class="{active:newactive==index}" @click="newactive=index"
+      >
+        <span class="bi-property__select__item__icon">
+          <ul class="bi-color-cubes clearfixed"  >
             <color-box
               v-for="(color,index) in item.icon.colors"
               :key="index"
@@ -29,8 +51,19 @@ export default {
   components: {
     colorBox
   },
+  props:{
+    isNew:{
+      type:Boolean,
+      default:false
+    },
+    propColor:{
+      
+    }
+  },
   data() {
     return {
+      newactive:0,
+      oldactive:0,
       colorBoxData: [{
                     title: ("默认"),
                     val: 0,
@@ -120,6 +153,7 @@ export default {
 <style lang="less">
 .bi-property__select {
     min-width: 160px;
+    padding: 0 !important;
 }
 .bi-property__select__item {
     height: 40px;

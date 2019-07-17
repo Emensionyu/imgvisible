@@ -44,18 +44,21 @@ export default {
   },
   methods: {
     handleStartValueChange(val) {
-      this.$emit("changeGroup", {
+      this.$emit("change:group", {
         ...this.formgroup,
         nowstartValue: val
       });
       // this.$refs.start.focus;
     },
+    // 输入框的第一个值改变跟新父组件相应项的startValue的值
     handleEndValueChange(val) {
-      this.$emit("changeGroup", {
+      this.$emit("change:group", {
         ...this.formgroup,
         nowendValue: val
       });
     },
+    // 输入框的第二个值改变跟新父组件相应项的startValue的值
+
     handleValidate(val){
     let res=this.validate(val);
     this.showMessage=!res
@@ -77,9 +80,19 @@ export default {
   align-items: center;
   flex-direction: row;
   margin: 0;
-  height: 60px;
+  height: 50px;
 }
 .el-form-item {
   margin-bottom: 0;
+}
+// .picker-input{
+//   padding: 0;
+//   margin: 0;
+//   height: 30px;
+//   line-height: 30px;;
+// }
+.el-input__inner {
+  height: 30px ;
+  // line-height: 30px;
 }
 </style>
