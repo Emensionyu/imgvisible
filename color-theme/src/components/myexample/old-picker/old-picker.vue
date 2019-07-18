@@ -26,7 +26,7 @@
         class="bi-property__select__item clearfixed"
         v-for="(item,index) in propColor"
         :key="index"
-        :class="{active:newactive==index}" @click="newactive=index"
+       
       >
         <span class="bi-property__select__item__icon">
           <ul class="bi-color-cubes clearfixed"  >

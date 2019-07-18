@@ -1,51 +1,61 @@
 <template>
   <div class="new-picker">
+    <!-- <select-type @select:type="handleSelectType"></select-type> -->
     <div class="picker-container" v-for="(item,index) in colorGroups" :key="index">
-      <el-col :span="14">
+      <el-col :span="18">
         <ipt-picker
           :group="item"
           @change:group="handleChangeGroup"
           :validate="validate"
           message="必须输入数值哦"
+          :maxValue="maxValue"
+          :minValue="minValue"
+          @select:type="handleSelectType"
+          :select-type="selectType"
         ></ipt-picker>
       </el-col>
-      <el-col :span="10" class="">
+      <el-col :span="6" class>
         <!-- <cache-color></cache-color> -->
         <new-colorblock @submit:color="handleSubmitColor" :itemGroup="item">
           <template v-slot:item="slotProps"></template>
         </new-colorblock>
-        <i class="el-icon-circle-plus-outline" @click="addGroupItem(item)"></i>
+        <i
+          class="el-icon-circle-plus-outline"
+          @click="addGroupItem(item)"
+          v-show="showAdditem(item)"
+        ></i>
         <i class="el-icon-delete" @click="delectGroupItem(item)" v-show="index!=0"></i>
       </el-col>
-     
     </div>
-     <el-button @click="submitNewColor" size="small">确定</el-button>
+    <el-button @click="submitNewColor" size="small">确定</el-button>
   </div>
 </template>
 <script>
 // const iptPicker = require("./ipt-picker");
 import iptPicker from "./ipt-picker";
 import cacheColor from "./cache-color";
-import newColorblock from './new-colorblock'
-
+import newColorblock from "./new-colorblock";
+import selectType from "../common/selete-type";
 export default {
   components: {
     iptPicker,
     newColorblock,
-    cacheColor
+    cacheColor,
+    selectType
   },
-  props:{
-     maxValue:{
-      type:Number,
-      required:true
+  props: {
+    maxValue: {
+      type: Number,
+      required: true
     },
-    minValue:{
-      type:Number,
-      required:true
+    minValue: {
+      type: Number,
+      required: true
     }
   },
   data() {
     return {
+      selectType: "number",
       colorGroups: [
         {
           startValue: 0,
@@ -54,6 +64,31 @@ export default {
         }
       ]
     };
+  },
+  watch: {
+    selectType(newval, oldval) {
+      if (newval == "number") {
+        this.colorGroups.forEach(element => {
+          element.startValue = element.startValue.replace(/\%/, "");
+          element.startValue > this.maxValue
+            ? this.minValue
+            : element.startValue;
+          element.endValue = element.endValue.replace(/\%/, "");
+          element.endValue > this.maxValue
+            ? this.endValue
+            : element.endValue;
+        });
+      }else if(newval=='percent'){
+         this.colorGroups.forEach(element => {
+          element.startValue=element.startValue > 100
+            ? '100%'
+            : element.startValue+"%";
+          element.endValue=element.endValue > 100
+            ? '100%'
+            : element.endValue+"%";
+        });
+      }
+    }
   },
   methods: {
     addGroupItem(item) {
@@ -91,7 +126,7 @@ export default {
           if (Object.keys(params).indexOf("nowendValue") > -1) {
             tempArray[i].endValue = params.nowendValue;
             break;
-          }else if(Object.keys(params).indexOf("nowstartValue") > -1){
+          } else if (Object.keys(params).indexOf("nowstartValue") > -1) {
             tempArray[i].startValue = params.nowstartValue;
             break;
           }
@@ -100,32 +135,52 @@ export default {
 
       this.colorGroups = tempArray;
     },
-    validate(val){
-      let maxValue=this.maxValue;
-      let minValue=this.minValue
-    let reg=new RegExp(/^\d[0-9]*\d?$/)
-    let reg2=new RegExp(/^\d[0-9]*\%$/)
-    return ((val&&reg.test(val))||(val&&reg2.test(val)))&&(val<=maxValue&&val>=minValue)
+    validate(val) {
+      let maxValue = this.maxValue;
+      let minValue = this.minValue;
+      let reg = new RegExp(/^\d[0-9]*\d?$/);
+      let reg2 = new RegExp(/^\d[0-9]*\%$/);
+      //百分比如何计算呢
+      return (
+        ((val && reg.test(val)) || (val && reg2.test(val))) &&
+        (val <= maxValue && val >= minValue)
+      );
     },
-    handleSubmitColor(params){
-      console.log(params)
+    handleSubmitColor(params) {
+      console.log(params);
       // console.log("选择的颜色是"+params.colorValue)
-       let tempArray = this.colorGroups;
+      let tempArray = this.colorGroups;
       let time = tempArray.length;
       for (let i = 0; i < time; i++) {
         if (
           tempArray[i].startValue == params.startValue &&
           tempArray[i].endValue == params.endValue
         ) {
-          tempArray[i].colorValue=params.colorValue
+          tempArray[i].colorValue = params.colorValue;
         }
       }
 
       this.colorGroups = tempArray;
-
     },
-    submitNewColor(e){
-      this.$emit('submit:newcolor',this.colorGroups)
+    submitNewColor(e) {
+      this.$emit("submit:newcolor", this.colorGroups);
+    },
+
+    showAdditem(item) {
+      let length = this.colorGroups.length;
+      if (length == 1) {
+        return true;
+      } else if (
+        JSON.stringify(this.colorGroups[length - 1]) == JSON.stringify(item)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    handleSelectType(val) {
+      console.log(this.maxValue);
+      this.selectType = val;
     }
   }
 };

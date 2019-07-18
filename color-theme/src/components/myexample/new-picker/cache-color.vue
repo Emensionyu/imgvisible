@@ -124,15 +124,16 @@ export default {
     },
     rePainter(val) {
       let ctx = this.ctx;
-      for(let i=1;i<=100;i++){
-        let gradrow=ctx.createLinearGradient(0,3*(i-1),300,3*i)
-        for(let j=1;j<=100;j++){
-          gradrow.addColorStop((j/100).toFixed(2),this.gethslBysl(val,j,101-i))
+      // for(let i=1;i<=100;i++){
+        let gradrow=ctx.createLinearGradient(0,0,300,0)
+        for(let j=0;j<=100;j++){
+          gradrow.addColorStop((j/100).toFixed(2),this.gethslBysl(val,j,100))
         }
         ctx.fillStyle=gradrow;
-         ctx.fillRect(0, (i-1)*3, 300, 3);
+        ctx.fillRect(0, 0, 300, 300);
         ctx.stroke();
-      }
+        gradrow=null
+      // }
       // let grdX =ctx.createLinearGradient(0, 300, 300, 300);
       // for (let i = 1; i <= 100; i++) {
       //   grdX.addColorStop((i / 100).toFixed(4),this.gethslBys(val,i) );

@@ -25,7 +25,7 @@ import oldPicker from '../old-picker/old-picker'
         props:['itemGroup'],
         data(){
             return{
-                visible:true,
+                visible:false,
                  boxStyle:{'background-color':'pink'},
                   color:'',
                 origincolorBoxData:[{
