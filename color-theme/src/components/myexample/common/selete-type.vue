@@ -68,7 +68,7 @@ export default {
 .bi-popover.bi-popover-property-edit {
   padding: 8px 0;
 //   -webkit-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: #fff;
   -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
@@ -79,12 +79,13 @@ export default {
 .bi-property-btn__icon {
   margin: 0;
   width: 30px;
-  height: 30px;
+  height: 31px;
   line-height: 30px;
   border-left: 1px solid #ddd;
   background-color: #fff;
 //   -webkit-border-radius: 3px;
-  border-radius: 3px;
+ border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   color: #666;
   cursor: pointer;
   overflow: hidden;

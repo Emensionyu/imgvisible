@@ -14,7 +14,7 @@
           :select-type="selectType"
         ></ipt-picker>
       </el-col>
-      <el-col :span="6" class>
+      <el-col :span="6" class="colorblock-container">
         <!-- <cache-color></cache-color> -->
         <new-colorblock @submit:color="handleSubmitColor" :itemGroup="item">
           <template v-slot:item="slotProps"></template>
@@ -22,7 +22,7 @@
         <i
           class="el-icon-circle-plus-outline"
           @click="addGroupItem(item)"
-          v-show="showAdditem(item)"
+          v-show="showAdditem(item,index)"
         ></i>
         <i class="el-icon-delete" @click="delectGroupItem(item)" v-show="index!=0"></i>
       </el-col>
@@ -74,18 +74,20 @@ export default {
             ? this.minValue
             : element.startValue;
           element.endValue = element.endValue.replace(/\%/, "");
-          element.endValue > this.maxValue
-            ? this.endValue
-            : element.endValue;
+          element.endValue > this.maxValue ? this.endValue : element.endValue;
         });
-      }else if(newval=='percent'){
-         this.colorGroups.forEach(element => {
-          element.startValue=element.startValue > 100
-            ? '100%'
-            : element.startValue+"%";
-          element.endValue=element.endValue > 100
-            ? '100%'
-            : element.endValue+"%";
+      } else if (newval == "percent") {
+        this.colorGroups.forEach(element => {
+          element.startValue = element.startValue + "%";
+          element.endValue = element.endValue + "%";
+        });
+      }
+    },
+    maxValue(newval, oldval) {
+      if (newval != oldval) {
+        this.colorGroups.forEach(element => {
+          element.startValue = 0;
+          element.endValue = 0;
         });
       }
     }
@@ -166,13 +168,11 @@ export default {
       this.$emit("submit:newcolor", this.colorGroups);
     },
 
-    showAdditem(item) {
+    showAdditem(item,index) {
       let length = this.colorGroups.length;
       if (length == 1) {
         return true;
-      } else if (
-        JSON.stringify(this.colorGroups[length - 1]) == JSON.stringify(item)
-      ) {
+      } else if (index == length - 1) {
         return true;
       } else {
         return false;
@@ -198,5 +198,14 @@ export default {
 }
 .picker-icon {
   display: inline-block;
+}
+.colorblock-container {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  i {
+    // margin-right: 10px;
+    margin-left: 10px;
+  }
 }
 </style>
