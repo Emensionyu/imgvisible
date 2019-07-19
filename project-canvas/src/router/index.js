@@ -7,6 +7,8 @@ import compose from '@/components/compose'
 import colorfill from '@/components/colorfill'
 import slot from '@/view/slot'
 import phoneNumber from '@/view/phone-number'
+import nextTick from '@/components/vuedemo/nextTick'
+import slot2 from '@/components/vuedemo/slot'
 Vue.use(Router)
 
 const router=new Router({
@@ -50,6 +52,17 @@ const router=new Router({
       path: '/phoneNumber',
       name: 'phoneNumber',
       component: phoneNumber
+    },
+    //key 为 index 
+    {
+      path: '/nextTick',
+      name: 'nextTick',
+      component: nextTick
+    },
+    {
+      path: '/slot2',
+      name: 'slot2',
+      component: slot2
     }
   ]
 })
