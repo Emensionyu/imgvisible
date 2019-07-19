@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       val: [] || "",
-      max: 200,
+      max: 20,
       min: 0
     };
   },
@@ -25,9 +25,9 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.maxValue = 300;
-    }, 2000);
+    // setTimeout(() => {
+    //   this.maxValue = 300;
+    // }, 2000);
 
     // this.colorPicker=new colorPicker({
     //     maxValue:200,

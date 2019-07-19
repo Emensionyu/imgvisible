@@ -20,8 +20,9 @@
         </div>
       </div>
       <div class="bi-property-btn__icon" slot="reference">
-        <span class="bi-icon-al-color">ss</span>
+        <span class="bi-icon-al-color">color</span>
       </div>
+      
     </el-popover>
   </div>
 </template>

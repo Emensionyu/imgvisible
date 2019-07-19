@@ -2,7 +2,7 @@
   <el-form :inline="true" class="demo-form-inline">
     <el-col :span="9">
       <el-form-item width="30%">
-        <div class="input-item-container">
+        <div class="input-item-container" :class="{'input-active':flagStart}">
           <div class="input-value">
             <el-input
               class="picker-input"
@@ -16,7 +16,7 @@
             <select-type @select:type="handleSelectType" :select-type="selectType"></select-type>
           </div>
         </div>
-         <div class="validate-message" v-show="flagStart">请输入合理数值</div>
+        <div class="validate-message" v-show="flagStart">请输入合理数值</div>
       </el-form-item>
     </el-col>
     <el-col :span="6">
@@ -28,7 +28,7 @@
     </el-col>
     <el-col :span="9">
       <el-form-item width="30%">
-        <div class="input-item-container">
+        <div class="input-item-container" :class="{'input-active':flagEnd}">
           <div class="input-value">
             <el-input class="picker-input" v-model="group.endValue" @blur="testEndValue"></el-input>
           </div>
@@ -52,7 +52,7 @@ export default {
       formgroup: this.group,
       showMessage: false,
       flagStart: false,
-      flagEnd: false
+      flagEnd: false,
     };
   },
   components: {
@@ -61,21 +61,30 @@ export default {
   watch: {
     "group.startValue": function(val) {
       // console.log("校验group.startValue" + val);
-      if(this.selectType=='percent'){
-      this.flagStart = this.handleValidate(val);
-
+      if (this.selectType == "percent") {
+        this.flagStart = this.handleValidate('percent',val);
+      }else if (this.selectType == "number") {
+        this.flagStart = this.handleValidate('number',val);
       }
     },
     "group.endValue": function(val) {
-      console.log("正在校验group.endValue" + val+typeof(val));
-
-      this.flagEnd = this.handleValidate(val);
+      console.log("正在校验group.endValue" + val + typeof val);
+      if (this.selectType == "percent") {
+        this.flagEnd = this.handleValidate('percent',val);
+      } else if (this.selectType == "number") {
+        this.flagEnd = this.handleValidate('number',val);
+      }
     }
   },
   methods: {
     handleInput(e) {},
-    handleValidate(val) {
-      return Number((val+"").replace(/\%/g, "")) > 100;
+    handleValidate(type,val) {
+      if(type=='percent'){
+         return Number((val + "").replace(/\%/g, "")) > 100||Number((val + "").replace(/\%/g, "")) <0;
+      }else if(type=='number'){
+        return Number(val)>this.maxValue||Number(val)<this.minValue
+      }
+     
     },
     testStartValue(e) {
       console.log(e.target.value);
@@ -185,6 +194,9 @@ export default {
     float: right;
   }
 }
+.input-active{
+  border: 1px solid red;
+}
 .input-value {
 }
 .range-text {
@@ -199,7 +211,10 @@ export default {
   height: 20px;
   margin-bottom: 10px;
 }
-input, select, textarea {
-    font: 13px/1.5 tahoma,arial,'Hiragino Sans GB','Hiragino Sans GB W3','Microsoft Yahei',\5b8b\4f53;
+input,
+select,
+textarea {
+  font: 13px/1.5 tahoma, arial, "Hiragino Sans GB", "Hiragino Sans GB W3",
+    "Microsoft Yahei", \5b8b\4f53;
 }
 </style>

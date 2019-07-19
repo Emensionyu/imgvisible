@@ -27,7 +27,7 @@
         <i class="el-icon-delete" @click="delectGroupItem(item)" v-show="index!=0"></i>
       </el-col>
     </div>
-    <el-button @click="submitNewColor" size="small">确定</el-button>
+    <el-button @click="submitNewColor" size="small" class="submit-button">确定</el-button>
   </div>
 </template>
 <script>
@@ -70,11 +70,7 @@ export default {
       if (newval == "number") {
         this.colorGroups.forEach(element => {
           element.startValue = element.startValue.replace(/\%/, "");
-          element.startValue > this.maxValue
-            ? this.minValue
-            : element.startValue;
           element.endValue = element.endValue.replace(/\%/, "");
-          element.endValue > this.maxValue ? this.endValue : element.endValue;
         });
       } else if (newval == "percent") {
         this.colorGroups.forEach(element => {
@@ -207,5 +203,11 @@ export default {
     // margin-right: 10px;
     margin-left: 10px;
   }
+}
+.submit-button{
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  padding: 5px;
 }
 </style>
