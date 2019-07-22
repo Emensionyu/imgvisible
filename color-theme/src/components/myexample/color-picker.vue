@@ -10,6 +10,7 @@
             <old-picker @submit:oldcolor="handleOldColor"></old-picker>
           </div>
         </div>
+        
         <div class="new-mode">
           <div class="old-mode-header">
             <el-radio v-model="mode" label="new"  >新模式</el-radio>
@@ -22,7 +23,7 @@
       <div class="bi-property-btn__icon" slot="reference">
         <span class="bi-icon-al-color">color</span>
       </div>
-      
+
     </el-popover>
   </div>
 </template>
@@ -97,6 +98,14 @@ export default {
     justify-content: center;
     flex-direction: column;
     width:40%;
+    margin-right: 20px;
+}
+.old-mode::after{
+  content:'';
+  width:2px;
+  border: 1px solid gray;
+  position: relative;
+  
 }
 .old-mode-header{
     display: flex;
