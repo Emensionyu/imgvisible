@@ -15,9 +15,10 @@ export default {
   data() {
     return {
       canvasWidth: 300,
-      canvas: "",
+      canvas: null,
       fadeIn: true,
-      alpha: 0
+      alpha: 0,
+      ctx:null
     };
   },
   methods: {
@@ -39,10 +40,10 @@ export default {
     drawScreen() {
       this.canvas = this.$refs.canvas;
       //背景
-      let ctx = this.canvas.getContext("2d");
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = "#ffffaa";
-      ctx.fillRect(0, 0, 300, 300);
+      this.ctx = this.canvas.getContext("2d");
+      this.ctx.globalAlpha = 1;
+      this.ctx.fillStyle = "#ffffaa";
+      this.ctx.fillRect(0, 0, 300, 300);
 
       if (this.fadeIn) {
         this.alpha += 0.01;
@@ -58,13 +59,13 @@ export default {
         }
       }
 
-      ctx.textBaseline = "top";
-      ctx.globalAlpha = this.alpha;
+      this.ctx.textBaseline = "top";
+      this.ctx.globalAlpha = this.alpha;
 
-      ctx.fillStyle = "#000000";
-      ctx.font = "20px Sans-serif";
-      ctx.textBaseline = "top";
-      ctx.fillText("hello world", 150, 80);
+      this.ctx.fillStyle = "#000000";
+      this.ctx.font = "20px Sans-serif";
+      this.ctx.textBaseline = "top";
+      this.ctx.fillText("hello world", 150, 80);
 
       // var helloWorld = new Image();
       // helloWorld.onload = function() {
@@ -81,12 +82,12 @@ export default {
     //     this.canvasWidth = 600;
     //   }, 2000);
     // },
-    gameLoop() {
-      setTimeout(() => {
-        this.gameLoop();
-      }, 20);
-      this.drawScreen();
-    }
+    // gameLoop() {
+    //   setTimeout(() => {
+    //     this.gameLoop();
+    //   }, 20);
+    //   this.drawScreen();
+    // }
   },
   beforeRouteEnter (to, from, next) {
     // 在渲染该组件的对应路由被 confirm 前调用
@@ -109,8 +110,8 @@ export default {
     next()
   },
   mounted() {
-    this.initCanvas();
-    this.gameLoop();
+    // this.initCanvas();
+    // this.gameLoop();
     // this.changcanvasWidth()
   }
 };

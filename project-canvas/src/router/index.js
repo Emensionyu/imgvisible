@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import helloworld from '@/components/HelloWorld'
 import bezier from '@/components/bezier'
 import line from '@/components/line'
 import clip from '@/components/clip'
@@ -9,6 +10,7 @@ import slot from '@/view/slot'
 import phoneNumber from '@/view/phone-number'
 import nextTick from '@/components/vuedemo/nextTick'
 import slot2 from '@/components/vuedemo/slot'
+import handsDraw from '@/components/hands-draw'
 Vue.use(Router)
 
 const router=new Router({
@@ -27,6 +29,11 @@ const router=new Router({
       path: '/bezier',
       name: 'bezier',
       component: bezier
+    },
+    {
+      path: '/helloworld',
+      name: 'helloworld',
+      component: helloworld
     },
     {
       path: '/clip',
@@ -63,6 +70,11 @@ const router=new Router({
       path: '/slot2',
       name: 'slot2',
       component: slot2
+    },
+    {
+      path: '/handsDraw',
+      name: 'handsDraw',
+      component: handsDraw
     }
   ]
 })
