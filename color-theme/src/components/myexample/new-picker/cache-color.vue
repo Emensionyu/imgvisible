@@ -8,19 +8,18 @@
       <div class="hsl-container-form">
         <div class="hsl-item">
           h:
-          <input v-model="hsl.h" />
+          <input v-model="hsl.h">
         </div>
         <div class="hsl-item">
           s:
-          <input v-model="hsl.s" />
+          <input v-model="hsl.s">
         </div>
         <div class="hsl-item">
           l:
-          <input v-model="hsl.l" />
+          <input v-model="hsl.l">
         </div>
       </div>
     </div>
-
     <el-button slot="reference" class="cache-button">
       <div class="cache-color"></div>
     </el-button>
@@ -33,7 +32,7 @@ export default {
     return {
       canvas: null,
       ctx: null,
-      hsl: {h:360}
+      hsl: { h: 360 }
     };
   },
   methods: {
@@ -125,14 +124,17 @@ export default {
     rePainter(val) {
       let ctx = this.ctx;
       // for(let i=1;i<=100;i++){
-        let gradrow=ctx.createLinearGradient(0,0,300,0)
-        for(let j=0;j<=100;j++){
-          gradrow.addColorStop((j/100).toFixed(2),this.gethslBysl(val,j,100))
-        }
-        ctx.fillStyle=gradrow;
-        ctx.fillRect(0, 0, 300, 300);
-        ctx.stroke();
-        gradrow=null
+      let gradrow = ctx.createLinearGradient(0, 0, 300, 0);
+      for (let j = 0; j <= 100; j++) {
+        gradrow.addColorStop(
+          (j / 100).toFixed(2),
+          this.gethslBysl(val, j, 100)
+        );
+      }
+      ctx.fillStyle = gradrow;
+      ctx.fillRect(0, 0, 300, 300);
+      ctx.stroke();
+      gradrow = null;
       // }
       // let grdX =ctx.createLinearGradient(0, 300, 300, 300);
       // for (let i = 1; i <= 100; i++) {
@@ -158,8 +160,10 @@ export default {
   },
   mounted() {
     this.initCanvas();
-    console.log("iii")
+    console.log("iii");
     this.rePainter(33);
+    console.log("iii");
+
     this.canvas.onmousemove = () => {
       this.pick(event, this.ctx);
     };
