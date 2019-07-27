@@ -158,6 +158,7 @@ export default {
   },
   mounted() {
     this.initCanvas();
+    console.log("iii")
     this.rePainter(33);
     this.canvas.onmousemove = () => {
       this.pick(event, this.ctx);
