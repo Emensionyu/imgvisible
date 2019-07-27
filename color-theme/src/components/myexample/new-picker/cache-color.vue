@@ -149,6 +149,9 @@ export default {
       // ctx.fillStyle = grdY;
       ctx.fillRect(0, 0, 300, 300);
       ctx.stroke();
+          console.log("iii");
+    console.log("iii");
+
     }
   },
   watch: {
