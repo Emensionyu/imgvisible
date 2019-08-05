@@ -15,10 +15,10 @@
         ></ipt-picker>
       </el-col>
       <el-col :span="6" class="colorblock-container">
-        <!-- <cache-color></cache-color> -->
-        <new-colorblock @submit:color="handleSubmitColor" :itemGroup="item">
+        <cache-color></cache-color>
+        <!-- <new-colorblock @submit:color="handleSubmitColor" :itemGroup="item">
           <template v-slot:item="slotProps"></template>
-        </new-colorblock>
+        </new-colorblock> -->
         <i
           class="el-icon-circle-plus-outline"
           @click="addGroupItem(item)"

@@ -13,6 +13,8 @@
     "element-ui": "^2.10.1",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
+    "tinycolor": "^0.0.1",
+    "tinycolor2": "^1.4.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
