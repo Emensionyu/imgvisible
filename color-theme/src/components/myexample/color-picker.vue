@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="bi-property-btn__icon" slot="reference">
-        <span class="bi-icon-al-color">color</span>
+        <span class="bi-icon-al-color"></span>
       </div>
 
     </el-popover>
@@ -136,5 +136,30 @@ export default {
 .el-popover{
   padding: 0
 }
+.bi-property-btn__icon{
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 3px;
+  color: #666;
+  cursor: pointer;
+
+}
+.bi-icon-al-color{
+  background-image: url(./images/sprite.png);
+    background-position: 0px -152px;;
+    width: 32px;
+    height: 32px;
+    display: block;
+    color: transparent;
+    .bi-icon-al-color:hover{
+  background-color: #3487e2 !important;
+  background-position: -152px -114px;
+}
+}
+
 </style>
 
