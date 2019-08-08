@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       val: [] || "",
-      max: 20,
+      max: 200,
       min: 0
     };
   },

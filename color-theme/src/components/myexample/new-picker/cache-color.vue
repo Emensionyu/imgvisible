@@ -1,7 +1,9 @@
 <template>
   <el-popover placement="top" width="550" trigger="click">
     <div class="cache-container">
-      <canvas id="mycanvas" ref="canvas" width="350" height="300"></canvas>
+      <canvas id="mycanvas" ref="canvas" width="350" height="300"
+      @mousedown="handleMouseDown"
+      ></canvas>
     </div>
     <div class="hsl-container">
       <div class="hsl-container-top" :style="topStyle"></div>
@@ -98,62 +100,56 @@ export default {
       if(x<300){
         this.hsl={h:this.h,s:hslObject.s.toFixed(2)*100+'%',l:hslObject.l.toFixed(2)*100+'%'}
       }
-      // else{
-      //   this.fromRgbtoHsl(rgb)
-      // }
-      
-      
-      
-
-      // this.hsl={h:hslObject.h,s:hslObject.s,l:hslObject.l}
-     
-    
     },
-    fromRgbtoHsl(rgb) {
-      let r = rgb[0],
-        g = rgb[1],
-        b = rgb[2];
-      (r /= 255), (g /= 255), (b /= 255);
+    handleMouseDown(e){
+      
 
-      var max = Math.max(r, g, b);
-      var min = Math.min(r, g, b);
-      var h,
-        s,
-        l = (max + min) / 2;
+    },
+fromRgbtoHsl(rgb) {
+    let r = rgb[0],
+      g = rgb[1],
+      b = rgb[2];
+    (r /= 255), (g /= 255), (b /= 255);
 
-      if (max == min) {
-        h = s = 0; // achromatic
-      } else {
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-          case r:
-            h = (g - b) / d + (g < b ? 6 : 0);
-            break;
-          case g:
-            h = (b - r) / d + 2;
-            break;
-          case b:
-            h = (r - g) / d + 4;
-            break;
-        }
-        h /= 6;
+    var max = Math.max(r, g, b);
+    var min = Math.min(r, g, b);
+    var h,
+      s,
+      l = (max + min) / 2;
+
+    if (max == min) {
+      h = s = 0; // achromatic
+    } else {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
       }
-      this.hsl = {
-        h: Math.floor(h * 360),
-        s: Math.floor(s * 100) + "%",
-        l: Math.floor(l * 100) + "%"
-      };
-      return (
-        "hsl(" +
-        Math.floor(h * 360) +
-        "," +
-        Math.floor(s * 100) +
-        "%," +
-        Math.floor(l * 100) +
-        "%)"
-      );
-    },
+      h /= 6;
+    }
+    this.hsl = {
+      h: Math.floor(h * 360),
+      s: Math.floor(s * 100) + "%",
+      l: Math.floor(l * 100) + "%"
+    };
+    return (
+      "hsl(" +
+      Math.floor(h * 360) +
+      "," +
+      Math.floor(s * 100) +
+      "%," +
+      Math.floor(l * 100) +
+      "%)"
+    );
+  },
     rePainter(val) {
       let ctx = this.ctx;
         let gradrow=this.gethslByh(val)
@@ -192,6 +188,7 @@ export default {
      this.canvas.onmousemove = () => {
       this.pick(event, this.ctx);
     };
+   
   }
 };
 </script>

@@ -39,7 +39,6 @@
         </div>
         <div class="validate-message" v-show="flagEnd">请输入合理数值</div>
       </el-form-item>
-      <!-- <div class="message" v-show="showMessage">{{message}}</div> -->
     </el-col>
   </el-form>
 </template>
