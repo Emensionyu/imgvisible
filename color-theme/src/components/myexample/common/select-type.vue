@@ -132,7 +132,7 @@ export default {
 
 .bi-property__select__item__icon,
 .bi-property__select__item__label {
-  float: left;
+  // float: left;
   display: inline-block;
   height: 100%;
 }
@@ -167,9 +167,7 @@ export default {
     width: 32px;
     height: 32px;
 }
-.bi-icon-al-number:hover{
 
-}
 [class^="bi-icon-"] {
   display: inline-block;
 }

@@ -196,8 +196,7 @@ export default {
 .input-active{
   border: 1px solid red;
 }
-.input-value {
-}
+
 .range-text {
   font-size: 10px;
 }
