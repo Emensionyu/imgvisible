@@ -39,7 +39,7 @@
 import iptPicker from "./ipt-picker";
 import cacheColor from "./cache-color";
 import newColorblock from "./new-colorblock";
-import selectType from "../common/selete-type";
+import selectType from "../common/select-type";
 export default {
   components: {
     iptPicker,

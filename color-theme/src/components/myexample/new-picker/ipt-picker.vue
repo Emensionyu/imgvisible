@@ -43,7 +43,7 @@
   </el-form>
 </template>
 <script>
-import selectType from "../common/selete-type";
+import selectType from "../common/select-type";
 export default {
   props: ["group", "message", "validate", "maxValue", "minValue", "selectType"],
   data() {
