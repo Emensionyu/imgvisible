@@ -1,7 +1,11 @@
 <template>
   <div class="new-picker">
     <!-- <select-type @select:type="handleSelectType"></select-type> -->
+<<<<<<< Updated upstream
     <div class="picker-container" v-for="(item,index) in colorGroups" :key="index">
+=======
+    <div class="picker-container" v-for="(item,index) in colorGroups"  >
+>>>>>>> Stashed changes
       <el-col :span="18">
         <ipt-picker
           :group="item"
