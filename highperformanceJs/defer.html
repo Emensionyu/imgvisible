@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script defer>
+        alert("1")
+    </script>
+    <script defer>
+        alert("2")
+    </script>
+
+    <script>
+        window.onload = function () {
+            alert("3")
+        }
+    </script>
+    
+</body>
+<!-- 动态脚本元素 -->
+<!-- 文件在该元素被添加到页面时开始下载,
+无论在核实启动下载,文件的下载执行不会阻塞页面其他进程 -->
+<script>
+    // ie以外在script元素接收完成是触发load事件
+    var script = document.createElement("script")
+    script.type = "text/javascript";
+
+    script.onload = function () {
+        alert("Script")
+    }
+    script.src = "./file.js"
+    document.getElementsByTagName('head')[0].appendChild(script)
+    
+    // ie支持 readyStatechange事件
+    script.onreadystatechange=function(){
+        if(script.readyState=='load'||script.readyState=='complete'){
+            script.onreadystatechange=null;
+            alert('script loaded')
+        }
+    }
+    script.src = "./file.js"
+    document.getElementsByTagName('head')[0].appendChild(script)
+</script>
+
+</html>

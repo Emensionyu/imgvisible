@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 创建一个xhr对象,用它下载javascript文件
+         -->
+    <script>
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'file.js', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status >= 200 && xhr.status < 399 || xhr.status == 304) {
+                    var script = document.createElement("script")
+                    script.type = "text/javascript";
+                    script.text=xhr.responseText;
+                    document.body.appendChild(script)
+                }
+            }
+        }
+
+        xhr.send(null)
+        // 下载javascript代码但不会立即执行,代码是在script值外返回的.
+        // 它的下载不会立即执行推迟脚本的执行
+
+    </script>
+</body>
+
+</html>
