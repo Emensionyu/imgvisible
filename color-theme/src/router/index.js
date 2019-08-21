@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import example from '@/components/myexample/example'
+// import example from '@/components/myexample/example'
 // import example from '/home/mensionyu/Desktop/workspace/code/dev/bi/bi/modules/components/chart/design/color-picker/example'
+import oR from '@/components/object-relation/o-r'
 
 Vue.use(Router)
 
@@ -13,10 +14,15 @@ export default new Router({
     //   name: 'HelloWorld',
     //   component: HelloWorld
     // },
+    // {
+    //   path: '/example',
+    //   name: 'example',
+    //   component: example
+    // },
     {
-      path: '/example',
-      name: 'example',
-      component: example
+      path: '/oR',
+      name: 'oR',
+      component: oR
     }
   ]
 })
