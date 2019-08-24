@@ -7,7 +7,7 @@
       :id="item.id"
       :key="index"
     >
-      <div class="item__ct">{{item.name}}</div>
+      <div :class="[item.core ? 'item__ct_content' : '', 'item__ct']">{{item.name}}</div>
       <div class="item__line1" v-if="item.showLine1">
         <span class="arrow-l"></span>
       </div>
@@ -35,12 +35,12 @@ export default {
         {
           name: "A1",
           id: 1,
-          core: true
         },
         {
           name: "A2",
           id: 2,
-          targets: [1, 5]
+          targets: [1,5],
+          core: true
         },
         {
           name: "A3",
@@ -48,20 +48,22 @@ export default {
           targets: [2]
         },
         {
-          name: "A5",
-          id: 5
+          name: "A4",
+          id: 4,
+          targets:[3]
         },
 
         {
+          name: "A5",
+          id: 5,
+          // targets: []
+        },
+         {
           name: "A6",
           id: 6,
           targets: [3]
         },
-        {
-          name: "A7",
-          id: 7,
-          targets: [3]
-        }
+        
       ],
       nodes: []
     };
@@ -73,6 +75,7 @@ export default {
       obj.id = opts.id;
       obj.parents = opts.parents;
       obj.targets = opts.targets;
+      obj.core=opts.core||false
       obj.targetNodes = [];
       obj.position = {
         left: 0,
@@ -171,12 +174,12 @@ export default {
         // 	 console.log(sortIndexOfOriginNode)
         // }
         if (sortIndexOfOriginNode === 0) {
-          this.locateByOriginNode(targetNode, node.getPosition(), {
-            offsetTop: sortIndexOfTargetNode ? sortIndexOfTargetNode * 100 : 0
+          this.locateByOriginNode(targetNode, this.getPosition(node), {
+            offsetTop: sortIndexOfTargetNode ? sortIndexOfTargetNode * 50 : 0
           });
         } else if (sortIndexOfOriginNode === 1) {
-          this.locateByTarget(targetNode.getPosition(), {
-            offsetTop: sortIndexOfOriginNode ? sortIndexOfOriginNode * 100 : 0
+          this.locateByTarget(node,this.getPosition(targetNode), {
+            offsetTop: sortIndexOfOriginNode ? sortIndexOfOriginNode * 50 : 0
           });
         }
       }
@@ -233,7 +236,7 @@ export default {
       for (var i = 0; i < parentNodes.length; i++) {
         let parentNode = parentNodes[i];
         this.moveParent(parentNode, this.getPosition(node), {
-          offsetTop: parentNode.parentNum * 100
+          offsetTop: parentNode.parentNum * 50
         });
         // this.drawline(this,parentNode)
       }
@@ -262,41 +265,44 @@ export default {
 .item__ct {
   width: 100px;
   height: 40px;
-  background: orange;
   border-radius: 5px;
-  color: #fff;
+  border:1px solid orange;
+  // color: #fff;
   font-size: 14px;
   text-align: center;
 }
+.item__ct_content{
+   background: orange;
+}
 .item__line1 {
-  width: 40px;
-  height: 3px;
-  background: red;
+  width: 38px;
+  height: 2px;
+  background: orange;
   position: absolute;
   top: 22px;
-  right: -40px;
+  right: -38px;
 }
 
 .item__line2-s {
-  width: 3px;
-  height: 84px;
-  background: red;
+  width: 2px;
+  height: 30px;
+  background: orange;
   position: absolute;
-  top: -61px;
+  top: -8px;
   right: -90px;
 }
 .item__line2-h {
   width: 90px;
-  height: 3px;
-  background: red;
+  height: 2px;
+  background: orange;
   position: absolute;
-  top: 22px;
+  top: 20px;
   right: -90px;
 }
 .arrow-l {
-  display: inline-block;
+  display: none;
   position: absolute;
-  border-color: transparent red transparent transparent;
+  border-color: transparent orange transparent transparent;
   border-width: 6px;
   border-style: solid;
   top: -4px;
@@ -304,9 +310,9 @@ export default {
 }
 
 .arrow-t {
-  display: inline-block;
+  display: none;
   position: absolute;
-  border-color: transparent transparent red transparent;
+  border-color: transparent transparent orange transparent;
   border-width: 6px;
   border-style: solid;
   top: -9px;
@@ -314,19 +320,19 @@ export default {
 }
 
 .item__line3-s {
-  width: 3px;
-  height: 84px;
-  background: red;
+  width: 2px;
+  height: 28px;
+  background: orange;
   position: absolute;
-  top: 40px;
+  top: 42px;
   left: 50%;
 }
 .item__line3-h {
   width: 90px;
-  height: 3px;
-  background: red;
+  height: 2px;
+  background: orange;
   position: absolute;
-  top: 120px;
+  top: 70px;
   left: 50%;
 }
 </style>
