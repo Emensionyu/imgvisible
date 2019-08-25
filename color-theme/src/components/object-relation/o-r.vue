@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="left: 600px;position: absolute;">
+  <div id="main" :style="scaleObject" >
     <div
       v-for="(item, index) in nodes"
       class="item"
@@ -29,44 +29,68 @@
 <script>
 // import { Tag } from '../../../../ant-design-vue/types';
 export default {
+  props:{
+     scale: {
+       type:Number,
+       default:1
+     }
+     ,
+     objectRelation:{
+       type:Array,
+     }
+  },
   data() {
     return {
-      data: [
-        {
-          name: "A1",
-          id: 1,
-        },
-        {
-          name: "A2",
-          id: 2,
-          targets: [1,5],
-          core: true
-        },
-        {
-          name: "A3",
-          id: 3,
-          targets: [2]
-        },
-        {
-          name: "A4",
-          id: 4,
-          targets:[3]
-        },
+      // data: [
+      //   {
+      //     name: "次对象",
+      //     id: 1,
+      //   },
+      //   {
+      //     name: "主对象A",
+      //     id: 2,
+      //     targets: [1,5],
+      //     core: true
+      //   },
+      //   {
+      //     name: "次对象一",
+      //     id: 3,
+      //     targets: [2]
+      //   },
+      //   {
+      //     name: "次对象二",
+      //     id: 4,
+      //     targets:[3]
+      //   },
 
-        {
-          name: "A5",
-          id: 5,
-          // targets: []
-        },
-         {
-          name: "A6",
-          id: 6,
-          targets: [3]
-        },
+      //   {
+      //     name: "次对象三",
+      //     id: 5,
+      //     // targets: []
+      //   },
+      //    {
+      //     name: "A6",
+      //     id: 6,
+      //     targets: [3]
+      //   },
         
-      ],
-      nodes: []
+      // ],
+
+      nodes: [],
+       
     };
+   
+  },
+  computed:{
+    scaleObject(){
+       return{
+        //  left:'600px',
+         position:'absolute',
+         left:'100px',
+         transform:`scale(${this.scale})`
+       }
+       
+      }
   },
   methods: {
     getNode(opts) {
@@ -86,7 +110,7 @@ export default {
 
     initdata() {
       console.log("init啦啦啦");
-      let data = this.data;
+      let data = this.objectRelation;
       for (var i = 0; i < data.length; i++) {
         this.nodes.push(this.getNode(data[i]));
       }
