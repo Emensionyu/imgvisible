@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import example from '@/components/myexample/example'
 // import example from '/home/mensionyu/Desktop/workspace/code/dev/bi/bi/modules/components/chart/design/color-picker/example'
 import ORexample from '@/components/object-relation'
+import cover from '@/components/relation-diagram/cover-list'
+
 
 Vue.use(Router)
 
@@ -23,6 +25,11 @@ export default new Router({
       path: '/ORexample',
       name: 'ORexample',
       component: ORexample
+    },
+    {
+      path: '/cover',
+      name: 'cover',
+      component: cover
     }
   ]
 })

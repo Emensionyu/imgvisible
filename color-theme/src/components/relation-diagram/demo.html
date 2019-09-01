@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <style>
+            .bi-relation-diagram {
+                  position: relative;
+            }
+
+            .item {
+                  position: absolute;
+            }
+
+            .item__ct {
+                  border-radius: 4px;
+                  border: 1px solid #ff8000;
+                  font-size: 12px;
+                  text-align: center;
+                  color: #181c25;
+                  box-sizing: border-box;
+            }
+
+            .item__ct_content {
+                  background: #ff8000;
+            }
+
+            .item__line1 {
+                  height: 1px;
+                  background: #ff8000;
+                  position: absolute;
+            }
+            .item__line2{
+                position: absolute;
+                right: 0;
+            }
+            .item__line2-v {
+                  width: 1px;
+                  background: #ff8000;
+                  position: absolute;
+                
+            }
+
+            .item__line2-h {
+                  height: 1px;
+                  background: #ff8000;
+                  position: absolute;
+                  left:0;
+            }
+
+            .arrow-l {
+                  display: none;
+                  position: absolute;
+                  border-color: transparent #ff8000 transparent transparent;
+                  border-width: 6px;
+                  border-style: solid;
+                  top: -4px;
+                  left: -8px;
+            }
+
+            .arrow-t {
+                  display: none;
+                  position: absolute;
+                  border-color: transparent transparent #ff8000 transparent;
+                  border-width: 6px;
+                  border-style: solid;
+                  top: -9px;
+                  left: -4px;
+            }
+
+            .item__line3 {
+                  position: absolute;
+                  left: 50%;
+            }
+
+            .item__line3-v {
+                  width: 1px;
+                  background: #ff8000;
+                  position: absolute;
+                  left: 50%;
+            }
+
+            .item__line3-h {
+                  height: 1px;
+                  background: #ff8000;
+                  position: absolute;
+                  left: 50%;
+            }
+      </style>
+</head>
+
+<body>
+      <div id="main">
+            <div class="bi-relation-diagram" :style="mainStyle">
+                  <div :style="contentStyle">
+                        <div v-for="(item, index) in nodes" class="item" :style="getNodeStyle(item)" :id="item.id" :key="index">
+                              <div class="item__ct">{{item.name}}</div>
+                              <div class="item__line1" v-if="item.showLine1" :style="item.line1Style">
+                                    <span class="arrow-l"></span>
+                              </div>
+                              <div class="item__line2" v-if="item.showLine2">
+                                    <div class="item__line2-h" :style="item.line2StyleOfH">
+                                          <span class="arrow-l"></span>
+                                    </div>
+                                    <div class="item__line2-v" :style="item.line2StyleOfV"></div>
+                              </div>
+                              <div class="item__line3" v-if="item.showLine3">
+                                    <div class="item__line3-h" :style="item.line3StyleOfH"></div>
+                                    <div class="item__line3-v" :style="item.line3StyleOfV">
+                                          <span class="arrow-t"></span>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <script src="./fmind-node.js"></script>
+      <script src="./fmind.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+      <script>
+            var app = new Vue({
+                  el: '#main',
+                  name: 'relation-diagram',
+                  props: {
+                      scale: {
+                          type: Number,
+                          default: 1
+                      },
+                      objectRelation: {
+                          type: Array,
+                      }
+                  },
+                  data() {
+                        let fmind = new Fmind({
+                              objectRelation: [{
+                                          name: "次对象",
+                                          id: 1
+                                    },
+                                    {
+                                          name: "主对象A",
+                                          id: 2,
+                                          targets: [1, 5],
+                                          core: true
+                                    },
+                                    {
+                                          name: "次对象一",
+                                          id: 3,
+                                          targets: [2]
+                                    },
+                                    {
+                                          name: "次对象二",
+                                          id: 4,
+                                          targets: [3]
+                                    },
+                                    {
+                                          name: "次对象三",
+                                          id: 5
+                                          // targets: []
+                                    },
+                                    {
+                                          name: "A6",
+                                          id: 6,
+                                          targets: [3]
+                                    }
+                              ]
+                        })
+                        console.log(fmind.nodes)
+                        return {
+                              nodes: fmind.nodes,
+                              fMindSize:fmind.size,
+                              // rowCount: 1,
+                              // colCount: 1,
+                              // mainTransformLeft: 0
+                        };
+                  },
+                  computed: {
+                        contentStyle() {
+                              let obj = {
+                                    'transform-origin': '4px center',
+                                    transform: `scale(${this.scale})`
+                              }
+                              return obj;
+                        },
+                        mainStyle() {
+                              let obj = {
+                                  width:this.fMindSize.width+'px',
+                                  height:this.fMindSize.height+'px'
+                              };
+                              return obj;
+                        }
+                  },
+                  methods: {
+                        getNodeStyle(node) {
+                              console.log(node)
+                              return {
+                                    left: node.position.left + "px",
+                                    top: node.position.top + "px",
+                                    width: node.size.width + "px",
+                                    height: node.size.height + "px",
+                                    'line-height': node.size.height - 2 + "px",
+                              };
+                        }
+                  },
+                  mounted() {}
+            })
+      </script>
+</body>
+
+</html>
