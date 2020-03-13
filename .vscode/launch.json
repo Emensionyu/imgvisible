@@ -8,7 +8,8 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\设计模式\\单例\\namespace.js",
+            "program": "${workspaceFolder}\\cache\\js知识点\\promise\\file.js",
+            
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

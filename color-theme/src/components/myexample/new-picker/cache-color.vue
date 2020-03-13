@@ -1,9 +1,7 @@
 <template>
   <el-popover placement="top" width="550" trigger="click">
     <div class="cache-container">
-      <canvas id="mycanvas" ref="canvas" width="350" height="300"
-      @mousedown="handleMouseDown"
-      ></canvas>
+      <canvas id="mycanvas" ref="canvas" width="350" height="300" @mousedown="handleMouseDown"></canvas>
     </div>
     <div class="hsl-container">
       <div class="hsl-container-top" :style="topStyle"></div>
@@ -12,7 +10,7 @@
           h:
           <input v-model="hsl.h">
         </div>
-        <div class="hsl-item">
+        <div class="hs l-item">
           s:
           <input v-model="hsl.s">
         </div>
@@ -29,28 +27,26 @@
 </template>
 
 <script>
-import tinycolor from 'tinycolor2'
+import tinycolor from "tinycolor2";
 export default {
   data() {
     return {
       canvas: null,
       ctx: null,
-      hsl: { h: 360,s:'100%' ,l:'50%'},
-      h:360,
-    
+      hsl: { h: 360, s: "100%", l: "50%" },
+      h: 360
     };
   },
-  computed:{
-    topStyle(){
-      return{
-        'background-color':this.getBghsl()
-      }
+  computed: {
+    topStyle() {
+      return {
+        "background-color": this.getBghsl()
+      };
     }
-    
   },
   methods: {
-    getBghsl(){
-      return 'hsl('+this.hsl.h+","+this.hsl.s+","+this.hsl.l+")"
+    getBghsl() {
+      return "hsl(" + this.hsl.h + "," + this.hsl.s + "," + this.hsl.l + ")";
     },
     initCanvas() {
       this.drawColor();
@@ -87,92 +83,96 @@ export default {
         pixel = ctx.getImageData(x, y, 1, 1),
         data = pixel.data;
       // let rgbarr = [data[0], data[1], data[2]];
-      let rgbObject="rgb(+"+data[0]+","+data[1]+","+data[2]+")"
-      let color=tinycolor(rgbObject)
-      let hsl=color.toHslString()
-      let hslObject=tinycolor(hsl).toHsl()
+      let rgbObject = "rgb(+" + data[0] + "," + data[1] + "," + data[2] + ")";
+      let color = tinycolor(rgbObject);
+      let hsl = color.toHslString();
+      let hslObject = tinycolor(hsl).toHsl();
       // console.log(rgbObject)
-      if(x>=300){
-        this.hsl={h:Math.floor(hslObject.h.toFixed(3)),s:'100%',l:'50%'}
+      if (x >= 300) {
+        this.hsl = {
+          h: Math.floor(hslObject.h.toFixed(3)),
+          s: "100%",
+          l: "50%"
+        };
         //  this.fromRgbtoHsl(rgb);
-        this.h=Math.floor(hslObject.h.toFixed(3))
+        this.h = Math.floor(hslObject.h.toFixed(3));
       }
-      if(x<300){
-        this.hsl={h:this.h,s:hslObject.s.toFixed(2)*100+'%',l:hslObject.l.toFixed(2)*100+'%'}
+      if (x < 300) {
+        this.hsl = {
+          h: this.h,
+          s: hslObject.s.toFixed(2) * 100 + "%",
+          l: hslObject.l.toFixed(2) * 100 + "%"
+        };
       }
     },
-    handleMouseDown(e){
-      
+    handleMouseDown(e) {},
+    fromRgbtoHsl(rgb) {
+      let r = rgb[0],
+        g = rgb[1],
+        b = rgb[2];
+      (r /= 255), (g /= 255), (b /= 255);
 
-    },
-fromRgbtoHsl(rgb) {
-    let r = rgb[0],
-      g = rgb[1],
-      b = rgb[2];
-    (r /= 255), (g /= 255), (b /= 255);
+      var max = Math.max(r, g, b);
+      var min = Math.min(r, g, b);
+      var h,
+        s,
+        l = (max + min) / 2;
 
-    var max = Math.max(r, g, b);
-    var min = Math.min(r, g, b);
-    var h,
-      s,
-      l = (max + min) / 2;
-
-    if (max == min) {
-      h = s = 0; // achromatic
-    } else {
-      var d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      switch (max) {
-        case r:
-          h = (g - b) / d + (g < b ? 6 : 0);
-          break;
-        case g:
-          h = (b - r) / d + 2;
-          break;
-        case b:
-          h = (r - g) / d + 4;
-          break;
+      if (max == min) {
+        h = s = 0; // achromatic
+      } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r:
+            h = (g - b) / d + (g < b ? 6 : 0);
+            break;
+          case g:
+            h = (b - r) / d + 2;
+            break;
+          case b:
+            h = (r - g) / d + 4;
+            break;
+        }
+        h /= 6;
       }
-      h /= 6;
-    }
-    this.hsl = {
-      h: Math.floor(h * 360),
-      s: Math.floor(s * 100) + "%",
-      l: Math.floor(l * 100) + "%"
-    };
-    return (
-      "hsl(" +
-      Math.floor(h * 360) +
-      "," +
-      Math.floor(s * 100) +
-      "%," +
-      Math.floor(l * 100) +
-      "%)"
-    );
-  },
+      this.hsl = {
+        h: Math.floor(h * 360),
+        s: Math.floor(s * 100) + "%",
+        l: Math.floor(l * 100) + "%"
+      };
+      return (
+        "hsl(" +
+        Math.floor(h * 360) +
+        "," +
+        Math.floor(s * 100) +
+        "%," +
+        Math.floor(l * 100) +
+        "%)"
+      );
+    },
     rePainter(val) {
       let ctx = this.ctx;
-        let gradrow=this.gethslByh(val)
-        ctx.fillStyle=gradrow;
-        ctx.fillRect(0, 0, 300, 300);
-        ctx.stroke();
-        
-        let grdX =ctx.createLinearGradient(0, 0, 300, 0);
-        grdX.addColorStop(0,'white')
-        grdX.addColorStop(1,'rgba(255, 255, 255, 0)')
-        ctx.fillStyle=grdX;
-        ctx.fillRect(0, 0, 300, 300);
-        ctx.stroke();
-        //
-        let grdY =ctx.createLinearGradient(300, 300,300, 0);
-        grdY.addColorStop(0,'black')
-        grdY.addColorStop(1,'rgba(0, 0, 0, 0)')
-        ctx.fillStyle=grdY;
-        ctx.fillRect(0, 0, 300, 300);
-        ctx.stroke();
-       
-      ctx.fillStyle = grdX;
+      let gradrow = this.gethslByh(val);
+      ctx.fillStyle = gradrow;
+      ctx.fillRect(0, 0, 300, 300);
+      ctx.stroke();
 
+      let grdX = ctx.createLinearGradient(0, 0, 300, 0);
+      grdX.addColorStop(0, "white");
+      grdX.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = grdX;
+      ctx.fillRect(0, 0, 300, 300);
+      ctx.stroke();
+      //
+      let grdY = ctx.createLinearGradient(300, 300, 300, 0);
+      grdY.addColorStop(0, "black");
+      grdY.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = grdY;
+      ctx.fillRect(0, 0, 300, 300);
+      ctx.stroke();
+
+      ctx.fillStyle = grdX;
     }
   },
   watch: {
@@ -185,10 +185,9 @@ fromRgbtoHsl(rgb) {
   mounted() {
     this.initCanvas();
     this.rePainter(33);
-     this.canvas.onmousemove = () => {
+    this.canvas.onmousemove = () => {
       this.pick(event, this.ctx);
     };
-   
   }
 };
 </script>
