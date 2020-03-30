@@ -8,8 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\cache\\js知识点\\promise\\file.js",
-            
+            "program": "${workspaceFolder}\\cache\\牛客网试题\\360 一题\\hope.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

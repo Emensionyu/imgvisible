@@ -1,0 +1,4 @@
+{
+  "app.js": "bundle.js",
+  "index.html": "index.html"
+}
