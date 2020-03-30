@@ -12,3 +12,9 @@
 >mini-css-extract-plugin：用于将 CSS 从主应用程序中分离。
 >bundle-loader：用于分离代码和延迟加载生成的 bundle。
 >promise-loader：类似于 bundle-loader ，但是使用了 promise API。
+
+## webpack bundle 分析
+>![webpack-chart](https://alexkuz.github.io/webpack-chart/) 
+ webpack --profile --json > stats.json
+<!-- >![webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/)  -->
+>![webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)  推荐
