@@ -1,6 +1,7 @@
 /**
  * @param {string[]} words
  * @return {number}
+ * @peoblem 820. 单词的压缩编码
  */
 
 function minimumLengthEncoding(words) {
