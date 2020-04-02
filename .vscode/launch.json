@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\cache\\牛客网试题\\360 一题\\hope.js",
+            "program": "${workspaceFolder}\\cache\\leetcode\\index289.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

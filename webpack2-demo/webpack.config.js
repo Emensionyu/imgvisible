@@ -1,5 +1,6 @@
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
@@ -12,10 +13,11 @@ module.exports = {
   },
   plugins: [
     new BundleAnalyzerPlugin({
-        analyzerMode:'server',
+        analyzerMode:'disabled',
         generateStatsFile:true,
         logLevel:'silent'
-    })
+    }),
+    new HtmlWebpackPlugin()
   ]
  
 };
