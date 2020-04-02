@@ -1,23 +1,37 @@
 const path = require('path');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
+    main: './src/index.js',
   },
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
+    // chunkFilename: '[name].bundle.js',// 比如打包公共库lodash到一个文件中
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
-    new BundleAnalyzerPlugin({
-        analyzerMode:'disabled',
-        generateStatsFile:true,
-        logLevel:'silent'
+    // new BundleAnalyzerPlugin({
+    //     analyzerMode:'disabled',
+    //     generateStatsFile:true,
+    //     logLevel:'silent'
+    // }),
+    new HtmlWebpackPlugin({
+      title: 'Caching'
     }),
-    new HtmlWebpackPlugin()
-  ]
- 
+    // new webpack.HashedModuleIdsPlugin()
+  ],
+   optimization: {
+       runtimeChunk: 'single',
+       splitChunks: {
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all'
+            }
+          }
+        }
+     }
 };
