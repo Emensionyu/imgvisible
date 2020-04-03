@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/exports-loader/index.js?file,parse=helpers.parse!./src/globals.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/exports-loader?file,parse=helpers.parse!./src/globals.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var file = 'blah.txt';\r\n// var helpers = {\r\n//   test: function() { console.log('test something'); },\r\n//   parse: function() { console.log('parse something'); }\r\n// };\n\n/*** EXPORTS FROM exports-loader ***/\nexports[\"file\"] = (file);\nexports[\"parse\"] = (helpers.parse);\n\n//# sourceURL=webpack:///./src/globals.js?./node_modules/exports-loader?file,parse=helpers.parse");
+
+/***/ }),
+
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -126,7 +137,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function(join) {function component() {\r\n  var element = document.createElement('div');\r\n      element.innerHTML = join(['Hello', 'webpack'], ' ');\r\n      return element;\r\n    }\r\n   let element = component(); \r\n   document.body.appendChild(element);\r\n  \n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\")[\"join\"]))\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("/* WEBPACK VAR INJECTION */(function(join) {// import { file } from './globals.js';\r\n__webpack_require__(/*! exports-loader?file,parse=helpers.parse!./globals.js */ \"./node_modules/exports-loader/index.js?file,parse=helpers.parse!./src/globals.js\");\r\nfunction component() {\r\n  var element = document.createElement('div');\r\n      element.innerHTML = join(['Hello', 'webpack'], ' ');\r\n      //shim 预置全局变量\r\n      console.log(file)\r\n\r\n      return element;\r\n    }\r\n   let element = component(); \r\n   document.body.appendChild(element);\r\n  \n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\")[\"join\"]))\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
