@@ -1,11 +1,7 @@
 function component() {
   var element = document.createElement('div');
-   var button = document.createElement('button');
-   var br = document.createElement('br');
-  
-   button.innerHTML = 'Click me and look at the console!';
-      element.appendChild(br);
-      element.appendChild(button);
+      element.innerHTML = join(['Hello', 'webpack'], ' ');
+      //shim 预置全局变量
       return element;
     }
    let element = component(); 
