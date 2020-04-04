@@ -1,15 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 // const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    main: './src/index.js',
+    index: './src/index.js',
+    polyfills: './src/polyfills.js',
   },
   output: {
     // filename: '[name].[contenthash].js',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     // chunkFilename: '[name].bundle.js',// 比如打包公共库lodash到一个文件中
     path: path.resolve(__dirname, 'dist')
   },
@@ -34,12 +36,18 @@ module.exports = {
     //     logLevel:'silent'
     // }),
     new HtmlWebpackPlugin({
-      title: 'Caching'
+      title: '渐进式网络应用程序'
     }),
     // new webpack.HashedModuleIdsPlugin()
     new webpack.ProvidePlugin({
       join: ['lodash', 'join']
-    })
+    }),
+     new WorkboxPlugin.GenerateSW({
+         // 这些选项帮助快速启用 ServiceWorkers
+         // 不允许遗留任何“旧的” ServiceWorkers
+         clientsClaim: true,
+         skipWaiting: true
+       })
   ],
   //  optimization: {
   //      runtimeChunk: 'single',

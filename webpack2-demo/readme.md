@@ -29,4 +29,11 @@
 > optimization.splitChunks配置cacheGroups将第三方库提取到公共chunk中，保证 client 代码和 server 代码版本一致
 >HashedModuleIdsPlugin 保证vendor hash变化与模块得路径有关
 
+## webpack 处理package
+> ProvidePlugin
+>  imports-loader export-loaders
+> 处理polyfill 
 
+## webpack Workbox 创建离线应用程序
+> 添加 Workbox 
+> 注册 Service Worker

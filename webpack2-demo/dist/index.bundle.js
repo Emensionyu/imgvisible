@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/exports-loader/index.js?file,parse=helpers.parse!./src/globals.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/exports-loader?file,parse=helpers.parse!./src/globals.js ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("var file = 'blah.txt';\r\n// var helpers = {\r\n//   test: function() { console.log('test something'); },\r\n//   parse: function() { console.log('parse something'); }\r\n// };\n\n/*** EXPORTS FROM exports-loader ***/\nexports[\"file\"] = (file);\nexports[\"parse\"] = (helpers.parse);\n\n//# sourceURL=webpack:///./src/globals.js?./node_modules/exports-loader?file,parse=helpers.parse");
-
-/***/ }),
-
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -134,10 +123,11 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function(join) {// import { file } from './globals.js';\r\n__webpack_require__(/*! exports-loader?file,parse=helpers.parse!./globals.js */ \"./node_modules/exports-loader/index.js?file,parse=helpers.parse!./src/globals.js\");\r\nfunction component() {\r\n  var element = document.createElement('div');\r\n      element.innerHTML = join(['Hello', 'webpack'], ' ');\r\n      //shim 预置全局变量\r\n      console.log(file)\r\n\r\n      return element;\r\n    }\r\n   let element = component(); \r\n   document.body.appendChild(element);\r\n  \n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\")[\"join\"]))\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n// import 'babel-polyfill';\r\n// function component() {\r\n//   var element = document.createElement('div');\r\n//       element.innerHTML = join(['Hello', 'webpack'], ' ');\r\n//       //shim 预置全局变量\r\n//       return element;\r\n//     }\r\n//    let element = component(); \r\n//    document.body.appendChild(element);\r\n//     fetch('https://jsonplaceholder.typicode.com/users')\r\n//       .then(response => response.json())\r\n//       .then(json => {\r\n//         console.log('We retrieved some data! AND we\\'re confident it will work on a variety of browser distributions.')\r\n//         console.log(json)\r\n//       })\r\n//       .catch(error => console.error('Something went wrong when fetching this data: ', error))\r\n\r\n\r\nif ('serviceWorker' in navigator) {\r\n  window.addEventListener('load', () => {\r\n    navigator.serviceWorker.register('/service-worker.js').then(registration => {\r\n      console.log('SW registered: ', registration);\r\n    }).catch(registrationError => {\r\n      console.log('SW registration failed: ', registrationError);\r\n    });\r\n  });\r\n}\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
