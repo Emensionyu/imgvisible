@@ -1,7 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+<<<<<<< Updated upstream
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+=======
+// const webpack = require('webpack');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
+>>>>>>> Stashed changes
 // const webpack = require('webpack');
 module.exports = {
   mode: 'development',
@@ -15,6 +20,7 @@ module.exports = {
     // chunkFilename: '[name].bundle.js',// 比如打包公共库lodash到一个文件中
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       // {
@@ -36,18 +42,18 @@ module.exports = {
     //     logLevel:'silent'
     // }),
     new HtmlWebpackPlugin({
-      title: '渐进式网络应用程序'
+      title: 'source-map'
     }),
     // new webpack.HashedModuleIdsPlugin()
-    new webpack.ProvidePlugin({
-      join: ['lodash', 'join']
-    }),
-     new WorkboxPlugin.GenerateSW({
-         // 这些选项帮助快速启用 ServiceWorkers
-         // 不允许遗留任何“旧的” ServiceWorkers
-         clientsClaim: true,
-         skipWaiting: true
-       })
+    // new webpack.ProvidePlugin({
+    //   join: ['lodash', 'join']
+    // }),
+    //  new WorkboxPlugin.GenerateSW({
+    //      // 这些选项帮助快速启用 ServiceWorkers
+    //      // 不允许遗留任何“旧的” ServiceWorkers
+    //      clientsClaim: true,
+    //      skipWaiting: true
+    //    })
   ],
   //  optimization: {
   //      runtimeChunk: 'single',
