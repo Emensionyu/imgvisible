@@ -1,12 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-<<<<<<< Updated upstream
-const webpack = require('webpack');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-=======
 // const webpack = require('webpack');
 // const WorkboxPlugin = require('workbox-webpack-plugin');
->>>>>>> Stashed changes
 // const webpack = require('webpack');
 module.exports = {
   mode: 'development',
