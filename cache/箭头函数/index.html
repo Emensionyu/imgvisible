@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+class Foo {
+  constructor(name) {
+    this.name = name
+  }
+  bar() {console.log(this.name)}
+  foobar = () => {console.log(this.name)}
+}
+var f = new Foo("jack")
+f.bar() // jack
+f.foobar() // jack
+// <see images below>
+console.dir(Foo) 
+console.dir(f)
+</script>
+</html>

@@ -37,3 +37,8 @@
 ## webpack Workbox 创建离线应用程序
 > 添加 Workbox 
 > 注册 Service Worker
+## 手写一个webpack 插件
+https://segmentfault.com/a/1190000019010101
+compiler webpack compile 类 属性hooks new hooksync(),方法run 执行事件回调 
+compilation 一次编译
+plugin 插件类，通过apply (complier)注入compiler,注册hokks方法和回调
