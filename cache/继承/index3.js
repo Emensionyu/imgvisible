@@ -1,15 +1,15 @@
 // 组合继承 
-function Parent (name) {
+function Parent(name) {
     this.name = name;
     this.colors = ['red', 'blue', 'green'];
 }
 
-function Child (name, age) {
+function Child(name, age) {
     Parent.call(this, name);
 }
 
 Child.prototype = new Parent();
-Child.prototype.constructor = Child;
+// Child.prototype.constructor = Child;
 // debugger
 var child1 = new Child('kevin');
 

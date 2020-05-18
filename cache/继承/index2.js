@@ -6,10 +6,10 @@ function Parent() {
 function Child() {
     Parent.call(this); // 经典构造函数继承
 }
-Child.prototype=new Parent()
+Child.prototype = new Parent()
 var child1 = new Child();
 
- child1.names.push('yayu');
+child1.names.push('yayu');
 
 console.log(child1.names); // ["kevin", "daisy", "yayu"]
 

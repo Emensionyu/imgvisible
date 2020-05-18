@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\cache\\leetcode\\index289.js",
+            "program": "${workspaceFolder}\\s2\\index.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
