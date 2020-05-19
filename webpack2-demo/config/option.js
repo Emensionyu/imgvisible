@@ -1,7 +1,7 @@
-var aqiData = 120;
+var aqiData = 2;
 var option = {
     title: {
-        text: "AQI",
+        text: "惰性加载，设计模式，抽象工厂",
         right: "45%",
         bottom: "25%",
         textStyle: {
@@ -55,12 +55,12 @@ var option = {
 };
 //实时AQI波浪的另一个颜色
 function weakColor(aqiData) {
-    var color = aqiData > 0 && aqiData <= 50 ? "rgba(97,216,0,.7)" :
-        aqiData > 50 && aqiData <= 100 ? "rgba(204,178,26,.7)" :
-        aqiData > 100 && aqiData <= 150 ? "rgba(245,166,35,.7)" :
-        aqiData > 150 && aqiData <= 200 ? "rgba(241,47,28,.7)" :
-        aqiData > 200 && aqiData <= 300 ? "rgba(156,13,113,.7)" :
-        aqiData > 300 ? "rgba(99,4,69,.7)" : "#C7C7CB";
+    var color = aqiData > 0 && aqiData <= 5 ? "rgba(97,216,0,.7)" :
+        aqiData > 5 && aqiData <= 10 ? "rgba(204,178,26,.7)" :
+        aqiData > 10 && aqiData <= 15 ? "rgba(245,166,35,.7)" :
+        aqiData > 15 && aqiData <= 20 ? "rgba(241,47,28,.7)" :
+        aqiData > 20 && aqiData <= 25 ? "rgba(156,13,113,.7)" :
+        aqiData > 25 ? "rgba(99,4,69,.7)" : "#C7C7CB";
     return color;
 }
-// module.exports = { option }
+export default option
