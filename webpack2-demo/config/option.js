@@ -63,4 +63,4 @@ function weakColor(aqiData) {
         aqiData > 300 ? "rgba(99,4,69,.7)" : "#C7C7CB";
     return color;
 }
-module.exports = { option: option }
+// module.exports = { option }
