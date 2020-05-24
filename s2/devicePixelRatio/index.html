@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <p>This example demonstrates the effect of zooming the page in and out (or moving it to a screen with a different scaling factor) on the value of the property <code>Window.devicePixelRatio</code>. Try it and watch what happens!</p>
+        </div>
+        <div class="pixel-ratio"></div>
+    </div>
+</body>
+<script>
+    let pixelRatioBox = document.querySelector(".pixel-ratio");
+    let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
+
+    const updatePixelRatio = () => {
+        let pr = window.devicePixelRatio;
+        let prString = (pr * 100).toFixed(0);
+        pixelRatioBox.innerText = `${prString}% (${pr.toFixed(2)})`;
+    }
+
+    updatePixelRatio();
+
+    matchMedia(mqString).addListener(updatePixelRatio);
+</script>
+
+</html>

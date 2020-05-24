@@ -1,7 +1,7 @@
-var jdData = 3;
+var s2Data = 4;
 var option = {
     title: {
-        text: "惰性加载，设计模式，抽象工厂，react事件合成",
+        text: "惰性加载，设计模式，抽象工厂，react事件合成，nextTick实现",
         right: "45%",
         bottom: "25%",
         textStyle: {
