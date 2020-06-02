@@ -1,7 +1,7 @@
-var s2Data = 5;
+var s2Data = 6;
 var option = {
     title: {
-        text: "惰性加载，设计模式，抽象工厂，react事件合成，nextTick实现,animation和transition",
+        text: "惰性加载，设计模式，抽象工厂，react事件合成，nextTick实现,animation和transition,vue render+mixin",
         right: "45%",
         bottom: "25%",
         textStyle: {
