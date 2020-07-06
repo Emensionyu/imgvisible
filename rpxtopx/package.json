@@ -1,0 +1,18 @@
+{
+  "name": "rpxtopx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "postcss": "^7.0.32",
+    "postcss-rpxtopx": "^0.1.2"
+  }
+}
